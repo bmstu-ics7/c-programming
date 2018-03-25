@@ -30,7 +30,7 @@ int main(void)
     printf("eps: ");
     scanf("%lf", &eps);
 
-    sum = f(x, eps);
+    double sum = f(x, eps);
 
     double arc = atan(x);
     printf("Sum = %-8.5lf\nOtv = %-8.5lf\nAbsolute = %-8.5lf\nRelative = %-8.5lf\n",
