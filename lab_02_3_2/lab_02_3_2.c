@@ -5,6 +5,32 @@
 
 #include<stdio.h>
 
+void where(int x1, int y1, int x2, int y2, int x, int y)
+{
+    float a, b;
+    if (x1 != x2)
+    {
+        a = (y1 - y2) / (x1 - x2);
+        b = y2 - a * x2;
+
+        if (y > a * x + b)
+            printf("Точка находится выше прямой\n");
+        else if (y < a * x + b)
+            printf("Точка находится ниже прямой\n");
+        else
+            printf("Точка находится на прямой\n");
+    }
+    else
+    {
+        if (x > x1)
+            printf("Точка находится справа от прямой(прямая перпендикулярна OX)\n");
+        else if (x < x1)
+            printf("Точка находится слева от прямой(прямая перпендикулярна OX)\n");
+        else
+            printf("Точка находится на прямой\n");
+    }
+}
+
 int main(void)
 {
     int x1, x2, y1, y2, x, y;
@@ -35,27 +61,6 @@ int main(void)
         return 0;
     }
 
-    float a, b;
-    if (x1 != x2)
-    {
-        a = (y1 - y2) / (x1 - x2);
-        b = y2 - a * x2;
-
-        if (y > a * x + b)
-            printf("Точка находится выше прямой\n");
-        else if (y < a * x + b)
-            printf("Точка находится ниже прямой\n");
-        else
-            printf("Точка находится на прямой\n");
-    }
-    else
-    {
-        if (x > x1)
-            printf("Точка находится справа от прямой(прямая перпендикулярна OX)\n");
-        else if (x < x1)
-            printf("Точка находится слева от прямой(прямая перпендикулярна OX)\n");
-        else
-            printf("Точка находится на прямой\n");
-    }
+    where(x1, y1, x2, y2, x, y);
     return 0;
 }
