@@ -28,7 +28,7 @@ int main(void)
     return 0;
   }
 
-  if (h > 80 && h < 300 && t > 30 && t < 220 && m > 20 && m < 500)
+  if (h > 0 && t > 0 && m > 0)
   {
     weight = h * t / 240;
     index = m / (h / 100 * h / 100);
