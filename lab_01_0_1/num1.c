@@ -11,15 +11,16 @@ int main(void)
 {
   float a, b, h;
   printf("Введите основания: ");
+  //Проверка на ввод
   if (scanf("%f%f", &a, &b) != 2)
   {
-    printf("Некорректный ввод\n");
+    printf("Некорректный ввод!\n");
     return 0;
   }
   printf("Введите высоту: ");
   if (scanf("%f", &h) != 1)
   {
-    printf("Некорректный ввод\n");
+    printf("Некорректный ввод!\n");
     return 0;
   }
 
