@@ -32,7 +32,7 @@ int main(void)
   {
     weight = h * t / 240;
     index = m / (h / 100 * h / 100);
-    printf("Нормальная масса тела: %8.3f \nИндекс массы тела: %8.3f", weight, index);
+    printf("Масса тела: %8.3f \nИндекс массы тела: %8.3f", weight, index);
   }
   else
   {
