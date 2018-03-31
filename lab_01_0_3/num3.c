@@ -8,7 +8,7 @@
 
 int main(void) 
 {
-  float h, t, m, index, weight;
+  float h, t, m;
   printf("Введите рост человека: ");
   if (scanf("%f", &h) != 1)
   {
@@ -30,9 +30,10 @@ int main(void)
 
   if (h > 0 && t > 0 && m > 0)
   {
-    weight = h * t / 240;
-    index = m / (h / 100 * h / 100);
-    printf("Масса тела: %8.3f \nИндекс массы тела: %8.3f", weight, index);
+    float w, i;
+    w = h * t / 240;
+    i = m / (h / 100 * h / 100);
+    printf("Масса тела: %8.3f \nИндекс массы тела: %8.3f", w, i);
   }
   else
   {
