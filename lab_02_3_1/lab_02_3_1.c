@@ -2,6 +2,7 @@
  * Нахождение НОД двух чисел
 */
 #include<stdio.h>
+#include <stdlib.h>
 
 #define INPUT_ERROR 1
 
