@@ -4,7 +4,9 @@
 #include<stdio.h>
 #include <stdlib.h>
 
+#define SUCCESS 0
 #define INPUT_ERROR 1
+#define MIN_NOD 1
 
 // Функция нахождения минимума
 int min(int a, int b)
@@ -27,7 +29,7 @@ int NOD(int a, int b)
             return i;
         }
     }
-    return 1;
+    return MIN_NOD;
 }
 
 int main(void)
@@ -41,5 +43,5 @@ int main(void)
     }
     answer = NOD(a, b);
     printf("Nod: %d\n", answer);
-    return 0;
+    return SUCCESS;
 }
