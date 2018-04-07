@@ -1,10 +1,11 @@
 /*
-Программа вычисляет ряд arctg и подсчитывает ошибку.
+ * Программа вычисляет ряд arctg и подсчитывает ошибку.
 */
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+
+#define INPUT_ERROR 1
 
 double f(double x, double eps)
 {
@@ -26,12 +27,18 @@ int main(void)
 {
     double x, eps;
     printf("x: ");
-    scanf("%lf", &x);
+    if (scanf("%lf", &x) != 1)
+    {
+        printf("Некорректный ввод!\n");
+        return INPUT_ERROR;
+    }
     printf("eps: ");
-    scanf("%lf", &eps);
-
+    if (scanf("%lf", &eps) != 1)
+    {
+        printf("Некорректный ввод!\n");
+        return INPUT_ERROR;
+    }
     double sum = f(x, eps);
-
     double arc = atan(x);
     printf("Sum = %-8.5lf\nOtv = %-8.5lf\nAbsolute = %-8.5lf\nRelative = %-8.5lf\n",
            sum, arc, fabs(sum - arc), fabs((sum - arc) / arc));
