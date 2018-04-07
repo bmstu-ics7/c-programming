@@ -1,8 +1,9 @@
 /*
-Нахождение НОД двух чисел
+ * Нахождение НОД двух чисел
 */
-
 #include<stdio.h>
+
+#define INPUT_ERROR 1
 
 // Функция нахождения минимума
 int min(int a, int b)
@@ -16,6 +17,8 @@ int min(int a, int b)
 //Функция нахождения НОД
 int NOD(int a, int b)
 {
+    a = abs(a);
+    b = abs(b);
     for (int i = min(a, b); i > 0; i--)
     {
         if (a % i == 0 && b % i == 0)
@@ -33,7 +36,7 @@ int main(void)
     if (scanf("%d%d", &a, &b) != 2)
     {
         printf("Incorrect input!\n");
-        return 0;
+        return INPUT_ERROR;
     }
     answer = NOD(a, b);
     printf("Nod: %d\n", answer);
