@@ -1,6 +1,7 @@
 /*
  * Нахождение НОД двух чисел
 */
+
 #include<stdio.h>
 #include <stdlib.h>
 
@@ -41,6 +42,7 @@ int main(void)
         printf("Incorrect input!\n");
         return INPUT_ERROR;
     }
+    
     answer = NOD(a, b);
     printf("Nod: %d\n", answer);
     return SUCCESS;
