@@ -21,6 +21,7 @@ double f(double x, double eps)
         k *= -1;
         a += 2;
     }
+    
     return sum;
 }
 
