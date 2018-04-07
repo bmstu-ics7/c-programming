@@ -1,6 +1,7 @@
 /*
  * Программа вычисляет ряд arctg и подсчитывает ошибку.
 */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
