@@ -9,6 +9,8 @@
 #define SUCCESS 0
 #define INPUT_ERROR -1
 #define TEN 10
+#define TRUE 1
+#define FALSE 0
 
 int main(void)
 {
@@ -29,11 +31,11 @@ int main(void)
 		n++;
   	}
 	
-	int flag = 1;
+	int flag = TRUE;
 	for (int i = 0; i < n - 1; i++)
 		if (arr[i] <= arr[i + 1])
 		{
-			flag = 0;
+			flag = FALSE;
 			break;
 		}
 
