@@ -6,10 +6,16 @@
 #include<stdio.h>
 
 #define SUCCESS 0
-#define INPUT_ERROR 1
+#define INPUT_ERROR -1
+
+#define UP 1
+#define DOWN 2
+#define ON 3
+#define LEFT 4
+#define RIGHT 5
 
 //Функция для нахождения положения точки
-void where(int x1, int y1, int x2, int y2, int x, int y)
+int where(int x1, int y1, int x2, int y2, int x, int y)
 {
     float a, b;
     if (x1 != x2)
@@ -18,20 +24,20 @@ void where(int x1, int y1, int x2, int y2, int x, int y)
         b = y2 - a * x2;
 
         if (y > a * x + b)
-            printf("Точка находится выше прямой\n");
+            return UP;
         else if (y < a * x + b)
-            printf("Точка находится ниже прямой\n");
+            return DOWN;
         else
-            printf("Точка находится на прямой\n");
+            return ON;
     }
     else
     {
         if (x > x1)
-            printf("Точка находится справа от прямой(прямая перпендикулярна OX)\n");
+            return RIGHT;
         else if (x < x1)
-            printf("Точка находится слева от прямой(прямая перпендикулярна OX)\n");
+            return LEFT;
         else
-            printf("Точка находится на прямой\n");
+            return ON;
     }
 }
 
@@ -66,6 +72,23 @@ int main(void)
         return INPUT_ERROR;
     }
 
-    where(x1, y1, x2, y2, x, y);
+    switch (where(x1, y1, x2, y2, x, y))
+    {
+        case UP: 
+          printf("Точка находится выше прямой!");
+          break;
+        case DOWN:
+          printf("Точка находится ниже прямой!");
+          break;
+        case RIGHT:
+          printf("Точка находится справа от прямой!");
+          break;
+        case LEFT:
+          printf("Точка находится слева от прямой!");
+          break;
+        case ON:
+          printf("Точка находится на прямой!");
+          break;
+    }
     return SUCCESS;
 }
