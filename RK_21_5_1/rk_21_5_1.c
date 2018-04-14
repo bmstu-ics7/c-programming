@@ -12,8 +12,8 @@
 
 int main(void)
 {
-	
   	int num;
+	printf("Введите число: ");
 	if (scanf("%d", &num) != 1)
   	{
     		printf("Некорректный ввод!");
