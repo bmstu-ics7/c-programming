@@ -5,7 +5,7 @@
 */
 #include <stdio.h>
 
-#define N 100
+#define N 5000
 #define SUCCESS 0
 #define INPUT_ERROR -1
 
