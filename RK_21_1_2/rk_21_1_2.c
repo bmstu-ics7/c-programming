@@ -26,9 +26,9 @@ int main(void)
 	int a = 1;
 	int arr[N];
 	int n = 0;
+	printf("Введите последовательность, заканчивающююся 0: ");
 	while (1)
 	{
-		printf("Введите %d число: ", n + 1);
 		if (scanf("%d", &a) != 1)
 		{
 			printf("Некорректный ввод!");
