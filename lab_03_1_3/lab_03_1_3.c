@@ -3,6 +3,8 @@
  * чисел меняется знак (нуль считается положительным числом).
 */
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #define SUCCESS 0
 #define INPUT_ERROR -1
@@ -39,7 +41,14 @@ int process(FILE* file, int* count)
 int main(void)
 {
     int count = 0;
-    FILE* file = fopen("out.txt", "w");
+    FILE* file = NULL;
+    file = fopen("out.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
 
     if (process(file, &count) == INPUT_ERROR)
         return INPUT_ERROR;
@@ -48,5 +57,6 @@ int main(void)
         return CLOSE_ERROR;
 
     printf("%d\n", count);
+
     return SUCCESS;
 }

@@ -3,6 +3,8 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 #define SUCCESS 0
 #define ARG_ERROR -1
@@ -32,11 +34,15 @@ int put_number_by_pos(FILE* file, const int pos, int* num)
     return SUCCESS;
 }
 
-int sort_file(FILE* file, const int n)
+int sort_file(FILE* file)
 {
     int num1, num2;
+    int n;
+    
+    fseek(file, 0, SEEK_END);
+    n = ftell(file) / SIZE;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n ; i++)
         for (int j = 0; j < n - i - 1; j++)
         {
             get_number_by_pos(file, j, &num1);
@@ -65,9 +71,13 @@ int generate_file(FILE* file, const int n)
     return SUCCESS;
 }
 
-int print_file(FILE* file, const int n)
+int print_file(FILE* file)
 {
     int num;
+    int n;
+    
+    fseek(file, 0, SEEK_END);
+    n = ftell(file) / SIZE;
 
     for (int i = 0; i < n; i++)
     {
@@ -97,13 +107,19 @@ int main(int argc, char** argv)
     FILE* file = NULL;
     file = fopen(argv[1], "w+b");
 
+    if (file == NULL)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
+
     generate_file(file, n);
     printf("Сгенерированный файл: ");
-    print_file(file, n);
+    print_file(file);
 
-    sort_file(file, n);
+    sort_file(file);
     printf("Отсортированный файл: ");
-    print_file(file, n);
+    print_file(file);
 
     if (fclose(file) == EOF)
         return CLOSE_ERROR;

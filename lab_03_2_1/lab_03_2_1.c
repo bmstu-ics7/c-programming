@@ -3,13 +3,14 @@
  * минимального и максимального чисел.
 */
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #define SUCCESS 0
 #define ARG_ERROR -1
 #define VOID_FILE -2
 #define INCORECT_FILE -3
-#define NOT_FILE -4
-#define CLOSE_ERROR -5
+#define CLOSE_ERROR -4
 
 #define TRUE 1
 #define FALSE 0
@@ -81,8 +82,8 @@ int main(int argc, char** argv)
 
     if (file == NULL)
     {
-        printf("Файла нет!");
-        return NOT_FILE;
+        printf("%s", strerror(errno));
+        return errno;
     }
 
     switch (find_average(file, &average))
@@ -96,13 +97,32 @@ int main(int argc, char** argv)
             return INCORECT_FILE;
     }
 
-    fclose(file);
+    if (fclose(file) == EOF)
+        return CLOSE_ERROR;
 
+    file = NULL;
     file = fopen(argv[0], "r");
-    find_count(file, average, &count);
-    fclose(file);
 
+    if (file == NULL)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
+
+    find_count(file, average, &count);
+
+    if (fclose(file) == EOF)
+        return CLOSE_ERROR;
+
+    file = NULL;
     file = fopen("out.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
+
     write_file(file, count);
 
     if (fclose(file) == EOF)
