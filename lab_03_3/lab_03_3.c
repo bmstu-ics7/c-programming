@@ -11,9 +11,6 @@
 
 #define COUNT_ARGS 2
 
-#define ZERO 0
-#define ONE 1
-
 #define TRUE 1
 
 #define SIZE 4
@@ -39,8 +36,8 @@ int sort_file(FILE* file, const int n)
 {
     int num1, num2;
 
-    for (int i = ZERO; i < n; i++)
-        for (int j = ZERO; j < n - i - ONE; j++)
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n - i - 1; j++)
         {
             get_number_by_pos(file, j, &num1);
             get_number_by_pos(file, j + 1, &num2);
@@ -59,7 +56,7 @@ int generate_file(FILE* file, const int n)
 {
     int num;
 
-    for (int i = ZERO; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         num = rand() % 10 + 1;
         fwrite(&num, SIZE, COUNT, file);
@@ -72,7 +69,7 @@ int print_file(FILE* file, const int n)
 {
     int num;
 
-    for (int i = ZERO; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         get_number_by_pos(file, i, &num);
         printf("%d ", num);

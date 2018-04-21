@@ -11,20 +11,16 @@
 #define NOT_FILE -4
 #define CLOSE_ERROR -5
 
-#define ZERO 0
-#define ONE 1
-#define TWO 2
-
 #define TRUE 1
 #define FALSE 0
 
 int find_average(FILE* file, float* average)
 {
     float num;
-    float max = ZERO, min = ZERO;
+    float max = 0, min = 0;
     int first_iteration = TRUE;
 
-    while(fscanf(file, "%f", &num) == ONE)
+    while(fscanf(file, "%f", &num) == 1)
     {
         if (first_iteration)
         {
@@ -45,16 +41,16 @@ int find_average(FILE* file, float* average)
     if (!feof(file))
         return INCORECT_FILE;
 
-    *average = (max + min) / TWO;
+    *average = (max + min) / 2;
     return SUCCESS;
 }
 
 int find_count(FILE* file, const float average, int* count)
 {
     float num;
-    *count = ZERO;
+    *count = 0;
 
-    while(fscanf(file, "%f", &num) == ONE)
+    while(fscanf(file, "%f", &num) == 1)
     {
         if (num > average)
             (*count)++;
@@ -71,7 +67,7 @@ int write_file(FILE* file, const int count)
 
 int main(int argc, char** argv)
 {
-    if (argc != TWO)
+    if (argc != 2)
     {
         printf("Некоректное количество входных данных\n");
         return ARG_ERROR;
@@ -81,7 +77,7 @@ int main(int argc, char** argv)
     int count;
 
     FILE* file = NULL;
-    file = fopen(argv[ONE], "r");
+    file = fopen(argv[0], "r");
 
     if (file == NULL)
     {
@@ -102,7 +98,7 @@ int main(int argc, char** argv)
 
     fclose(file);
 
-    file = fopen(argv[ONE], "r");
+    file = fopen(argv[0], "r");
     find_count(file, average, &count);
     fclose(file);
 
