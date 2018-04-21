@@ -6,6 +6,7 @@
 
 #define SUCCESS 0
 #define INPUT_ERROR -1
+#define CLOSE_ERROR -2
 
 #define ZERO 0
 #define ONE 1
@@ -46,7 +47,9 @@ int main(void)
     if (process(file, &count) == INPUT_ERROR)
         return INPUT_ERROR;
 
-    fclose(file);
+    if (fclose(file) == EOF)
+        return CLOSE_ERROR;
+
     printf("%d\n", count);
     return SUCCESS;
 }

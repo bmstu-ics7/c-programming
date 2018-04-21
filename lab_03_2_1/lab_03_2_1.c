@@ -9,6 +9,7 @@
 #define VOID_FILE -2
 #define INCORECT_FILE -3
 #define NOT_FILE -4
+#define CLOSE_ERROR -5
 
 #define ZERO 0
 #define ONE 1
@@ -107,7 +108,9 @@ int main(int argc, char** argv)
 
     file = fopen("out.txt", "w");
     write_file(file, count);
-    fclose(file);
+
+    if (fclose(file) == EOF)
+        return CLOSE_ERROR;
 
     return SUCCESS;
 }

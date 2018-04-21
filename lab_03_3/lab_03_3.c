@@ -7,6 +7,7 @@
 #define SUCCESS 0
 #define ARG_ERROR -1
 #define INPUT_ERROR -2
+#define CLOSE_ERROR -3
 
 #define COUNT_ARGS 2
 
@@ -107,7 +108,8 @@ int main(int argc, char** argv)
     printf("Отсортированный файл: ");
     print_file(file, n);
 
-    fclose(file);
+    if (fclose(file) == EOF)
+        return CLOSE_ERROR;
 
     return SUCCESS;
 }
