@@ -8,6 +8,7 @@
 #define ARG_ERROR -1
 #define VOID_FILE -2
 #define INCORECT_FILE -3
+#define NOT_FILE -4
 
 #define ZERO 0
 #define ONE 1
@@ -43,7 +44,7 @@ int find_average(FILE* file, float* average)
     if (!feof(file))
         return INCORECT_FILE;
 
-    *average = (max + min) / 2;
+    *average = (max + min) / TWO;
     return SUCCESS;
 }
 
@@ -52,7 +53,7 @@ int find_count(FILE* file, const float average, int* count)
     float num;
     *count = ZERO;
 
-    while(fscanf(file, "%f", &num) == 1)
+    while(fscanf(file, "%f", &num) == ONE)
     {
         if (num > average)
             (*count)++;
@@ -78,8 +79,14 @@ int main(int argc, char** argv)
     float average;
     int count;
 
-    FILE* file;
+    FILE* file = NULL;
     file = fopen(argv[ONE], "r");
+
+    if (file == NULL)
+    {
+        printf("Файла нет!");
+        return NOT_FILE;
+    }
 
     switch (find_average(file, &average))
     {
