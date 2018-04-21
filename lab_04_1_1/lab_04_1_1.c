@@ -1,11 +1,12 @@
+/*
+ * Найти произведение нечетных элементов
+ * во введенном массиве
+*/
 #include <stdio.h>
 
 #define SUCCESS 0
 
 #define N 10
-
-#define ZERO 0
-#define ONE 1
 
 #define REMAIN 2
 
@@ -13,19 +14,19 @@
 
 int read_array(int array[], int* count)
 {
-    *count = ZERO;
+    *count = 0;
     int num;
 
     while(TRUE)
     {
-        printf("Введите %d элемент: ", *count + ONE);
+        printf("Введите %d элемент: ", *count + 1);
 
         if (scanf("%d", &num) != 1)
             break;
 
         array[(*count)++] = num;
 
-        if (*count == 10)
+        if (*count == N)
             break;
     }
 
@@ -34,7 +35,7 @@ int read_array(int array[], int* count)
 
 int composition(const int array[], const int count)
 {
-    int answ = ONE;
+    int answ = 1;
 
     for (int i = 0; i < count; i++)
         if (array[i] % REMAIN)
@@ -45,8 +46,10 @@ int composition(const int array[], const int count)
 
 int main(void)
 {
-    int array[N], count = ZERO;
+    int array[N], count = 0;
+
     read_array(array, &count);
     printf("%d", composition(array, count));
+
     return SUCCESS;
 }
