@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #define SUCCESS 0
+#define VOID_SEQUENCE -1
 
 #define N 10
 
@@ -30,6 +31,12 @@ int read_array(int array[], int* count)
             break;
     }
 
+    if (*count == 0)
+    {
+        printf("Пустая последовательность!");
+        return VOID_SEQUENCE;
+    }
+
     return SUCCESS;
 }
 
@@ -48,7 +55,9 @@ int main(void)
 {
     int array[N], count = 0;
 
-    read_array(array, &count);
+    if (read_array(array, &count) != SUCCESS)
+        return VOID_SEQUENCE;
+
     printf("%d", composition(array, count));
 
     return SUCCESS;
