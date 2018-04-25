@@ -51,10 +51,7 @@ int calc(int* begin, int* end)
             j--;
 
         if (*i < 0 && *j >= 0)
-        {
-            printf("%d %d\n", *i, *j);
             sum += (*(i++)) * (*(j--));
-        }
     }
 
     return sum;
@@ -89,6 +86,8 @@ int main(int argc, char** argv)
             printf("Некорректный файл");
             return INCORRECT_FILE;
     }
+
+    fclose(file);
 
     printf("%d\n", calc(array, array + count - 1));
     return SUCCESS;
