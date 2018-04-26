@@ -48,7 +48,6 @@ int print_array(const int array[], const int count)
     return SUCCESS;
 }
 
-
 int sort(int array[], const int count)
 {
     int now;
