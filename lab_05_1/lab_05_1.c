@@ -87,7 +87,11 @@ int main(int argc, char** argv)
             return INCORRECT_FILE;
     }
 
-    fclose(file);
+    if (fclose(file) != 0)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
 
     printf("%d\n", calc(array, array + count - 1));
     return SUCCESS;
