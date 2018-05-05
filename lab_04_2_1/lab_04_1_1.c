@@ -42,7 +42,7 @@ int input_array(int array[], int* count)
     return SUCCESS;
 }
 
-int print_array(const int array[], const int* count)
+int print_array(const int array[], const int* const count)
 {
     for (int i = 0; i < *count; i++)
         printf("%d ", array[i]);
@@ -61,7 +61,7 @@ int prime_number(const int num)
     return TRUE;
 }
 
-int prime_array(const int array[], const int* count, int new_array[], int* new_count)
+int prime_array(const int array[], const int* const count, int new_array[], int* new_count)
 {
     *new_count = 0;
 

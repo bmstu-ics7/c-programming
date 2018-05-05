@@ -3,13 +3,18 @@
  * очередное число Фибоначчи (первое число Фибоначчи равно 0, второе – 1).
 */
 #include <stdio.h>
+#include <math.h>
 
 #define SUCCESS 0
 #define VOID_SEQUENCE -1
 #define NEGATIVE_ARG -2
+#define POS_ERROR -3
+#define MAX_FIB_ERROR -4
 
 #define N 10
 #define MAX_N 20
+
+#define MAX_INT 2147483647
 
 #define TRUE 1
 
@@ -58,6 +63,11 @@ int print_array(const int array[], const int count)
 
 int fib(const int n)
 {    
+    int max_fib = (int)(log(MAX_INT * sqrt(5)) / log((1 + sqrt(5)) / 2));
+
+    if (n > max_fib)
+        return MAX_FIB_ERROR;
+
     if (n < 1)
         return NEGATIVE_ARG;
 
@@ -82,6 +92,9 @@ int fib(const int n)
 
 int insert(int array[], int* count, const int pos, const int num)
 {
+    if (pos > *count)
+        return POS_ERROR;
+
     for (int i = *count; i > pos; i--)
     {
         int temp = array[i];
