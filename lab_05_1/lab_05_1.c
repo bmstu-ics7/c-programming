@@ -16,6 +16,8 @@
 
 #define N 100
 
+int error;
+
 int input_array(FILE* file, int* array, int* count)
 {
     int num;
@@ -30,9 +32,15 @@ int input_array(FILE* file, int* array, int* count)
     }
 
     if (*count == 0 && feof(file))
+    {
+        error = VOID_FILE;
         return VOID_FILE;
+    }
     else if (!feof(file))
+    {
+        error = INCORRECT_FILE;
         return INCORRECT_FILE;
+    }
 
     return SUCCESS;
 }
@@ -57,6 +65,23 @@ int calc(int* begin, int* end)
     return sum;
 }
 
+int read_error(err)
+{
+    switch(err)
+    {
+        case VOID_FILE:
+            printf("Файл пустой!");
+            return VOID_FILE;
+
+        case INCORRECT_FILE:
+            printf("Некорректный файл!");
+            return INCORRECT_FILE;
+
+        default:
+            return SUCCESS;
+    }
+}
+
 int main(int argc, char** argv)
 {
     if (argc != 2)
@@ -76,15 +101,9 @@ int main(int argc, char** argv)
 
     int array[N], count = 0;
 
-    switch (input_array(file, array, &count))
+    if (input_array(file, array, &count) != SUCCESS)
     {
-        case VOID_FILE:
-            printf("Файл пустой!");
-            return VOID_FILE;
-
-        case INCORRECT_FILE:
-            printf("Некорректный файл");
-            return INCORRECT_FILE;
+        return read_error(error);
     }
 
     if (fclose(file) != 0)
