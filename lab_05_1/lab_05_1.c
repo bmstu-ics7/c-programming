@@ -16,8 +16,6 @@
 
 #define N 100
 
-int error;
-
 int input_array(FILE* file, int* array, int* count)
 {
     int num;
@@ -32,15 +30,9 @@ int input_array(FILE* file, int* array, int* count)
     }
 
     if (*count == 0 && feof(file))
-    {
-        error = VOID_FILE;
         return VOID_FILE;
-    }
     else if (!feof(file))
-    {
-        error = INCORRECT_FILE;
         return INCORRECT_FILE;
-    }
 
     return SUCCESS;
 }
@@ -100,8 +92,9 @@ int main(int argc, char** argv)
     }
 
     int array[N], count = 0;
+    int error = 0;
 
-    if (input_array(file, array, &count) != SUCCESS)
+    if ((error = input_array(file, array, &count)) != SUCCESS)
     {
         return read_error(error);
     }
