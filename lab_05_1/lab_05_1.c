@@ -37,7 +37,7 @@ int input_array(FILE* file, int* array, int* count)
     return SUCCESS;
 }
 
-int calc(int* begin, int* end)
+int calc(int* const begin, int* const end)
 {
     int *i = begin, *j = end;
     int sum = 0;
