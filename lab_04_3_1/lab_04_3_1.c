@@ -90,7 +90,7 @@ int fib(const int n)
     return x2;
 }
 
-int insert(int array[], int* count, const int pos, const int num)
+int insert(int array[], int* const count, const int pos, const int num)
 {
     if (pos > *count)
         return POS_ERROR;
