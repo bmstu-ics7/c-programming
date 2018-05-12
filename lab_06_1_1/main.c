@@ -4,7 +4,12 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include "define.h"
+
+#define SUCCESS 0
+#define ARG_ERROR -1
+
+#define N 100
+
 
 int input_array(FILE* file, int* array, int* count);
 

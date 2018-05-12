@@ -2,7 +2,11 @@
  * input_array.c
 */
 #include <stdio.h>
-#include "define.h"
+
+#define SUCCESS 0
+#define COUNT_ERROR -2
+#define VOID_FILE -3
+#define INCORRECT_FILE -4
 
 int input_array(FILE* file, int* array, int* count)
 {
