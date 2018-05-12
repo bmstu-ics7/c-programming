@@ -6,7 +6,7 @@ RM := rm
 %.o: %.c
 	$(CC) $(ERROR) $(KEYS) -c $^
 
-all: *.o
+all: input_array.o calc.o read_error.o main.o
 	$(CC) -o app.exe $^
 
 clean:
