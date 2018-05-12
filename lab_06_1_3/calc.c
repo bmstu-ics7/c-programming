@@ -1,3 +1,5 @@
+#include "calc.h"
+
 int calc(int* const begin, int* const end)
 {
     int *i = begin, *j = end;

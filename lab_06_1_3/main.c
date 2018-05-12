@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include "define.h"
 #include "input_array.h"
 #include "calc.h"
 #include "read_error.h"
 
-//int input_array(FILE* file, int* array, int* size);
+#define SUCCESS 0
+#define ARG_ERROR -1
+
+#define N 100
 
 int main(int argc, char** argv)
 {

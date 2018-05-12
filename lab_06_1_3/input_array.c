@@ -2,7 +2,7 @@
  * input_array.c
 */
 #include <stdio.h>
-#include "define.h"
+#include "input_array.h"
 
 int input_array(FILE* file, int* array, int* count)
 {
