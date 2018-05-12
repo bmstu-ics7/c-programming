@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "define.h"
+#include "read_error.h"
 
 int read_error(int err)
 {
