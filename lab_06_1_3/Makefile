@@ -1,10 +1,17 @@
-KEYS := -g0
-ERROR := -std=c99 -Wall -Werror
+KEYS := -std=c99 -Wall -Werror
 CC := gcc
 RM := rm
 
+ifeq ($(mode), debug)
+    KEYS += -g3
+endif
+
+ifeq ($(mode), release)
+    KEYS += -g0
+endif
+
 %.o: %.c %.h
-	$(CC) $(ERROR) $(KEYS) -c $^
+	$(CC) $(KEYS) -c $^
 
 all: input_array.o calc.o read_error.o main.o
 	$(CC) -o app.exe $^
@@ -12,8 +19,8 @@ all: input_array.o calc.o read_error.o main.o
 clean:
 	$(RM) *.o *.exe *.gch
 
-test_input_array: input_array.o test_input_array.o
+test_input_array: assert.o input_array.o test_input_array.o 
 	$(CC) -o test_input_array.exe $^
 
-test_calc: calc.o test_calc.o 
+test_calc: assert.o calc.o test_calc.o 
 	$(CC) -o test_calc.exe $^

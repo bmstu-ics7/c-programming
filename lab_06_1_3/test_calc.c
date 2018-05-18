@@ -1,41 +1,31 @@
 #include <stdio.h>
 #include "calc.h"
-
-#define SUCCESS 0
-#define WRONG -1
+#include "assert.h"
 
 int test1(void)
 {
     int a[] = {1, 2, -1};
-    int k = calc(a, a + 2);
 
-    if (k == -2)
+    if (assert(-2, calc(a, a + 2), "test1") != SUCCESS)
     {
-        printf("Test {1, 2, -1} true answer: -2\n");
-        return SUCCESS;
-    }
-    else
-    {
-        printf("Test {1, 2, -1} wrong answer: %d. True: -2\n", k);
+        printf("array: [%d, %d, %d]\n\n", a[0], a[1], a[2]);
         return WRONG;
     }
+
+    return SUCCESS;
 }
 
 int test2(void)
 {
     int a[] = {3, 5, -2, -4};
-    int k = calc(a, a + 3);
 
-    if (k == -22)
+    if (assert(-22, calc(a, a + 3), "test2") != SUCCESS)
     {
-        printf("Test {3, 5, -2, -4} true answer: -22\n");
-        return SUCCESS;
-    }
-    else
-    {
-        printf("Test {3, 5, -2, -4} wrong answer: %d. True: -22\n", k);
+        printf("array: [%d, %d, %d, %d]\n\n", a[0], a[1], a[2], a[3]);
         return WRONG;
     }
+
+    return SUCCESS;
 }
 
 void test_calc(void)
@@ -48,7 +38,7 @@ void test_calc(void)
     if (test2() != SUCCESS)
         err_cnt++;
 
-    printf("%d %s\n", err_cnt, err_cnt ? "FAILED" : "OK");
+    printf(WHITE "%d %s\n", err_cnt, err_cnt ? RED "FAILED" : GREEN "OK");
 }
 
 int main(void)
