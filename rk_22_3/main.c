@@ -1,18 +1,40 @@
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #include "input_array.h"
 #include "deg_mat.h"
 #include "print_array.h"
 
+#define SUCCESS 0
+#define ARG_ERROR -1
+#define INPUT_ERROR -2
+
 int main(int argc, char** argv)
 {
-    FILE* f = fopen(argv[1], "r");
+    if (argc != 2)
+    {
+        printf("Incorrect arguments");
+        return ARG_ERROR;
+    }
+
+    FILE* f = NULL;
+    f = fopen(argv[1], "r");
+
+    if (f == NULL)
+    {
+        printf("%s", strerror(errno));
+        return errno;
+    }
 
     int size_a = 0, size_b = 0;
     int a[N], b[N];
 
-    input_array(f, a, &size_a);
-    input_array(f, b, &size_b);
+    if (input_array(f, a, &size_a) != SUCCESS)
+        return INPUT_ERROR;
+
+    if (input_array(f, b, &size_b) != SUCCESS)
+        return INPUT_ERROR;
 
     fclose(f);
     
