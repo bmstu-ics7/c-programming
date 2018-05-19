@@ -1,8 +1,8 @@
 #include <stdio.h>
+
 #include "input_array.h"
 #include "deg_mat.h"
-
-#define N 100
+#include "print_array.h"
 
 int main(int argc, char* argv)
 {
@@ -12,11 +12,12 @@ int main(int argc, char* argv)
     input_array(stdin, a, &size_a);
     input_array(stdin, b, &size_b);
     
+    int size_c = 0;
     int c[N];
-    deg_mat(a, size_a, b, size_b, c);
 
-    for (int i = 0; i < 4; i++)
-        printf("%d " c + i);
+    deg_mat(a, size_a, b, size_b, c, &size_c);
+
+    print_array(stdout, c, size_c);
 
     return SUCCESS;
 }

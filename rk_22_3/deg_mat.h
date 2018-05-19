@@ -7,6 +7,6 @@
 
 void deg_mat(const int* const a, const int size_a,
             const int* const b, const int size_b,
-            int* c);
+            int* c, int* size_c);
 
 #endif

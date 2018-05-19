@@ -10,7 +10,7 @@ KEYS= -std=c99 -Wall -Werror
 
 
 
-app.exe: input_array.o deg_mat.o main.o
+app.exe: input_array.o deg_mat.o print_array.o main.o
 
 	$(CC) -o app.exe $^
 
