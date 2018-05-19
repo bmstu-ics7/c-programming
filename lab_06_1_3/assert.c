@@ -9,9 +9,16 @@ int assert(int expected, int recieved, char* test_name)
     }
     else
     {
+        err_cnt++;
+
         printf(RED "%s failed:\n" 
                 WHITE "expected: %d, recieved: %d\n", 
                 test_name, expected, recieved);
         return WRONG;
     }
+}
+
+void print_errors()
+{
+    printf(WHITE "%d %s\n", err_cnt, err_cnt ? RED "FAILED" : GREEN "OK");
 }
