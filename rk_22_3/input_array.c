@@ -8,7 +8,7 @@ int input_array(FILE* f, int* a, int* size)
         return INPUT_ERROR;
     }
 
-    if (*size < 0)
+    if (*size > N || *size < 0)
     {
         printf("Некоректный ввод");
         return INPUT_ERROR;
