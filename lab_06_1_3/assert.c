@@ -1,5 +1,7 @@
 #include "assert.h"
 
+int err_cnt = 0;
+
 int assert(int expected, int recieved, char* test_name)
 {
     if (expected == recieved)

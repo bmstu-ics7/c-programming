@@ -2,7 +2,7 @@
 #include "calc.h"
 #include "assert.h"
 
-int err_cnt = 0;
+//int err_cnt = 0;
 
 int test1(void)
 {
