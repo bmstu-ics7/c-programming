@@ -5,7 +5,7 @@ int input_array(FILE* f, int* a, int* size)
     fscanf(f, "%d", size);
 
     for (int i = 0; i < *size; i++)
-        fcanf(f, "%d", a + i);
+        fscanf(f, "%d", a + i);
 
     return SUCCESS;
 }
