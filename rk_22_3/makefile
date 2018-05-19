@@ -34,3 +34,7 @@ app.exe: input_array.o deg_mat.o print_array.o main.o
 clean:
 
 	rm *.o *.exe *.gch
+
+
+test_deg_mat: deg_mat.o test_deg_mat.o
+	$(CC) -o test_deg.exe $^
