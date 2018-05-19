@@ -14,6 +14,8 @@ int input_array(FILE* f, int* a, int* size)
         return INPUT_ERROR;
     }
 
+    assert(*size < N && *size > 0);
+
     for (int i = 0; i < *size; i++)
         if (fscanf(f, "%d", a + i) != 1)
         {

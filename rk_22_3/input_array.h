@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 #ifndef INPUT_ARRAY_H
 #define INPUT_ARRAY_H
