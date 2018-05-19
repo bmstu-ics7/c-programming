@@ -2,13 +2,11 @@
 #include "calc.h"
 #include "assert.h"
 
-//int err_cnt = 0;
-
 int test1(void)
 {
     int a[] = {1, 2, -1};
 
-    if (assert(-3, calc(a, a + 2), "test1") != SUCCESS)
+    if (assert(-2, calc(a, a + 2), "test1") != SUCCESS)
     {
         printf("array: [%d, %d, %d]\n\n", a[0], a[1], a[2]);
         return WRONG;
@@ -32,8 +30,6 @@ int test2(void)
 
 void test_calc(void)
 {
-    //int err_cnt = 0;
-
     test1();
     test2();
 

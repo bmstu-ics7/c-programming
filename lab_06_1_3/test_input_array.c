@@ -58,20 +58,11 @@ int test3(void)
 
 void test_input_array(void)
 {
-    int err_cnt = 0;
+    test1();
+    test2();
+    test3();
 
-    {
-        if (test1() != SUCCESS)
-            err_cnt++;
-
-        if (test2() != SUCCESS)
-            err_cnt++;
-
-        if (test3() != SUCCESS)
-            err_cnt++;
-    }
-
-    printf(WHITE "%d %s", err_cnt, err_cnt ? RED "FAILED" : GREEN "OK");
+    print_errors();
 }
 
 int main(void)
