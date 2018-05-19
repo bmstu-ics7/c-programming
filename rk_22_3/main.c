@@ -4,13 +4,17 @@
 #include "deg_mat.h"
 #include "print_array.h"
 
-int main(int argc, char* argv)
+int main(int argc, char** argv)
 {
+    FILE* f = fopen(argv[1], "r");
+
     int size_a = 0, size_b = 0;
     int a[N], b[N];
 
-    input_array(stdin, a, &size_a);
-    input_array(stdin, b, &size_b);
+    input_array(f, a, &size_a);
+    input_array(f, b, &size_b);
+
+    fclose(f);
     
     int size_c = 0;
     int c[N];

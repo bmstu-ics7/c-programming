@@ -2,6 +2,21 @@ CC=gcc
 
 KEYS= -std=c99 -Wall -Werror
 
+ifeq ($(mode), debug)
+
+	KEYS += -g3
+
+endif
+
+
+
+ifeq ($(mode), release)
+    
+	KEYS += -g0
+
+endif
+
+
 
 
 %.o: %.c %.h
