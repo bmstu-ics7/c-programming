@@ -21,3 +21,6 @@ clean:
 
 test_key: assert.o key.o test_key.o
 	$(CC) -o test_key.exe $^
+
+test_mysort: assert.o mysort.o test_mysort.o
+	$(CC) -o test_mysort.exe $^
