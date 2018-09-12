@@ -18,3 +18,6 @@ all: input_array.o key.o mysort.o print_array.o main.o
 
 clean:
 	$(RM) *.o *.exe *.gch
+
+test_key: assert.o key.o test_key.o
+	$(CC) -o test_key.exe $^
