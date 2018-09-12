@@ -20,13 +20,6 @@
 #define INCORRECT_ARG -3
 #define VOID_ARRAY -4
 
-unsigned long long tick(void)
-{
-    unsigned long long d;
-    __asm__ __volatile__ ("rdtsc" : "=A" (d) );
-    return d; 
-}
-
 int main(int argc, char** argv)
 {
     if (argc != 2 && argc != 3) 
@@ -60,7 +53,11 @@ int main(int argc, char** argv)
         if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
             return VOID_ARRAY;
 
-        mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
+        mysort(new_array_begin, 
+                new_array_end - new_array_begin, 
+                sizeof(array[0]), 
+                compare_inc);
+
         print_array(stdout, new_array_begin, new_array_end);
         free(new_array_begin);
     }
@@ -73,6 +70,7 @@ int main(int argc, char** argv)
         }
 
         mysort(array, size, sizeof(array[0]), compare_inc);
+
         print_array(stdout, array, array + size);
     }
 
