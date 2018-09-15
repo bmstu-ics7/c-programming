@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 
     if (fclose(file) != SUCCESS)
     {
-        fprintf(errno, "%s", strerror(errno));
+        fprintf(stderr, "%s", strerror(errno));
         return errno;
     }
 
