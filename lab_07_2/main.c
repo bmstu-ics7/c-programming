@@ -43,7 +43,11 @@ int main(int argc, char** argv)
     if ((code = input_array(file, &array, &size)) != SUCCESS)
         return code;
 
-    fclose(file);
+    if (fclose(file) != SUCCESS)
+    {
+        fprintf(errno, "%s", strerror(errno));
+        return errno;
+    }
 
     char* pstr = argv[2];
     if (argc == 3 && pstr[0] == 'f' && pstr[1] == 0)
