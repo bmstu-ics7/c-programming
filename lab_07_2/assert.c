@@ -7,6 +7,7 @@ int assert(const int expected, const int recieved, const char* const test_name)
     if (expected == recieved)
     {
         printf(GREEN "%s success\n\n", test_name);
+        printf(WHITE "");
         return SUCCESS;
     }
     else
@@ -16,6 +17,8 @@ int assert(const int expected, const int recieved, const char* const test_name)
         printf(RED "%s failed:\n" 
                 WHITE "expected: %d, recieved: %d\n", 
                 test_name, expected, recieved);
+        
+        printf(WHITE "");
         return WRONG;
     }
 }
@@ -32,6 +35,7 @@ int assert_array(const int* const expected, const int* const recieved,
     if (count_right == size)
     {
         printf(GREEN "%s success\n\n", test_name);
+        printf(WHITE "");
         return SUCCESS;
     }
     else
@@ -49,7 +53,7 @@ int assert_array(const int* const expected, const int* const recieved,
         for (int i = 0; i < size; i++)
             printf("%d ",  recieved[i]);
 
-        printf("\n\n");
+        printf(WHITE "\n\n");
                 
         return WRONG;
     }
@@ -58,5 +62,6 @@ int assert_array(const int* const expected, const int* const recieved,
 void print_errors()
 {
     printf(WHITE "%d %s\n", err_cnt, err_cnt ? RED "FAILED" : GREEN "OK");
+    printf(WHITE "\n");
 }
 
