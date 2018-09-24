@@ -1,6 +1,6 @@
 #include "input_array.h"
 
-int input_array(FILE* file, int** array, int* size)
+int input_array(FILE* file, int **array, int *size)
 {
     int check;
     *size = 0;
@@ -22,7 +22,7 @@ int input_array(FILE* file, int** array, int* size)
     fseek(file, 0, SEEK_SET);
 
     *array = malloc(*size * SIZE);
-    int* pa = *array;
+    int *pa = *array;
 
     for (int i = 0; i < *size; i++)
         fscanf(file, "%d", pa++);

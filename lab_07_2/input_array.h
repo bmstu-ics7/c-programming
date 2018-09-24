@@ -10,6 +10,6 @@
 
 #define SIZE sizeof(int)
 
-int input_array(FILE* file, int** arr, int* n);
+int input_array(FILE* file, int **arr, int *n);
 
 #endif
