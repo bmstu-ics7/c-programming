@@ -2,16 +2,6 @@
 #include "key.h"
 #include "assert.h"
 
-void test_mysort1(void)
-{
-    int a[] = {9, 8, 7, 6, 5, 4, 3 ,2 , 1, 0};
-    int right[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    
-    mysort(a, 10, sizeof(a[0]), compare_inc);
-    
-    assert_array(a, right, 10, "test1");
-}
-
 void test_key1(void)
 {
     int a[] = {1, 2, 3, 4, 5};
@@ -19,6 +9,8 @@ void test_key1(void)
     int right[] = {1, 2, 3, 4, 5};
     
     key(a, a + 5, &b, &b_end);
+    
+    free(b);
     
     assert_array(right, b, 5, "test1");
 }
@@ -31,6 +23,8 @@ void test_key2(void)
     
     key(a, a + 5, &b, &b_end);
     
+    free(b);
+    
     assert_array(right, b, 3, "test2");
 }
 
@@ -41,6 +35,8 @@ void test_key3(void)
     int right[] = {1};
     
     key(a, a + 5, &b, &b_end);
+    
+    free(b);
     
     assert_array(right, b, 1, "test3");
 }
@@ -53,6 +49,16 @@ void test_key(void)
     test_key3();
     
     print_errors();
+}
+
+void test_mysort1(void)
+{
+    int a[] = {9, 8, 7, 6, 5, 4, 3 ,2 , 1, 0};
+    int right[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    
+    mysort(a, 10, sizeof(a[0]), compare_inc);
+    
+    assert_array(a, right, 10, "test1");
 }
 
 void test_mysort2(void)
