@@ -4,9 +4,9 @@
 
 void test_key1(void)
 {
-    int a[] ={1, 2, 3, 4, 5};
+    int a[]={1, 2, 3, 4, 5};
     int *b, *b_end;
-    int right[] ={1, 2, 3, 4, 5};
+    int right[]={1, 2, 3, 4, 5};
     
     key(a, a + 5, &b, &b_end);
     
@@ -17,9 +17,9 @@ void test_key1(void)
 
 void test_key2(void)
 {
-    int a[] ={1, 2, 3, -4, 5};
+    int a[]={1, 2, 3, -4, 5};
     int *b, *b_end;
-    int right[] ={1, 2, 3};
+    int right[]={1, 2, 3};
     
     key(a, a + 5, &b, &b_end);
     
@@ -30,9 +30,9 @@ void test_key2(void)
 
 void test_key3(void)
 {
-    int a[] ={1, -2, 3, 4};
+    int a[]={1, -2, 3, 4};
     int *b, *b_end;
-    int right[] ={1};
+    int right[]={1};
     
     key(a, a + 5, &b, &b_end);
     
@@ -53,8 +53,8 @@ void test_key(void)
 
 void test_mysort1(void)
 {
-    int a[] ={9, 8, 7, 6, 5, 4, 3 ,2 , 1, 0};
-    int right[] ={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int a[]={9, 8, 7, 6, 5, 4, 3 ,2 , 1, 0};
+    int right[]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     
     mysort(a, 10, sizeof(a[0]), compare_inc);
     
@@ -63,8 +63,8 @@ void test_mysort1(void)
 
 void test_mysort2(void)
 {
-    int a[] ={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int right[] ={9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    int a[]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int right[]={9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
     
     mysort(a, 10, sizeof(a[0]), compare_dec);
     
@@ -73,8 +73,8 @@ void test_mysort2(void)
 
 void test_mysort3(void)
 {
-    int a[] ={5, 2, 3, 7, 4, 1, 6, 9, 8, 0};
-    int right[] ={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int a[]={5, 2, 3, 7, 4, 1, 6, 9, 8, 0};
+    int right[]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     
     mysort(a, 10, sizeof(a[0]), compare_inc);
     
