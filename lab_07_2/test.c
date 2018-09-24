@@ -12,9 +12,7 @@ void test_key1(void)
     
     assert_array(right, b, 5, "test1");
     
-    free(a);
     free(b);
-    free(b_end);
 }
 
 void test_key2(void)
@@ -27,9 +25,7 @@ void test_key2(void)
     
     assert_array(right, b, 3, "test2");
     
-    free(a);
     free(b);
-    free(b_end);
 }
 
 void test_key3(void)
@@ -42,9 +38,7 @@ void test_key3(void)
     
     assert_array(right, b, 1, "test3");
     
-    free(a);
     free(b);
-    free(b_end);
 }
 
 void test_key(void)
@@ -65,9 +59,6 @@ void test_mysort1(void)
     mysort(a, 10, sizeof(a[0]), compare_inc);
     
     assert_array(a, right, 10, "test1");
-    
-    free(a);
-    free(right);
 }
 
 void test_mysort2(void)
@@ -78,9 +69,6 @@ void test_mysort2(void)
     mysort(a, 10, sizeof(a[0]), compare_dec);
     
     assert_array(a, right, 10, "test2");
-    
-    free(a);
-    free(right);
 }
 
 void test_mysort3(void)
@@ -91,9 +79,6 @@ void test_mysort3(void)
     mysort(a, 10, sizeof(a[0]), compare_inc);
     
     assert_array(a, right, 10, "test3");
-    
-    free(a);
-    free(right);
 }
 
 void test_mysort(void)
