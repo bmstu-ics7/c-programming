@@ -15,8 +15,7 @@ int assert(const int expected, const int recieved, const char * const test_name)
         err_cnt++;
 
         printf(RED "%s failed:\n" 
-                WHITE "expected: %d, recieved: %d\n", 
-                test_name, expected, recieved);
+                WHITE "expected: %d, recieved: %d\n", test_name, expected, recieved);
         
         printf(WHITE "");
         return WRONG;
