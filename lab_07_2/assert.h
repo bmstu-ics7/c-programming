@@ -12,8 +12,7 @@
 
 int assert(const int expected, const int recieved, const char *const test_name);
 
-int assert_array(const int *const expected, const int *const recieved, 
-        const int size, const char *const test_name);
+int assert_array(const int *const expected, const int *const recieved, const int size, const char *const test_name);
 
 void print_errors();
 
