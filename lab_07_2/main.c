@@ -22,7 +22,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2 && argc != 3) 
+    if (argc != 3 && argc != 4)
     {
         fprintf(stderr, "Incorrect arguments!");
         return INCORRECT_ARG;
@@ -49,8 +49,17 @@ int main(int argc, char **argv)
         return errno;
     }
 
-    char *pstr = argv[2];
-    if (argc == 3 && pstr[0] == 'f' && pstr[1] == 0)
+    FILE* output = NULL;
+    output = fopen(argv[2], "w");
+
+    if (output == NULL)
+    {
+        fprintf(stderr, "%s", strerror(errno));
+        return errno;
+    }
+
+    char *pstr = argv[3];
+    if (argc == 4 && pstr[0] == 'f' && pstr[1] == 0)
     {
         int *new_array_begin, *new_array_end;
 
@@ -59,12 +68,12 @@ int main(int argc, char **argv)
 
         mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
 
-        print_array(stdout, new_array_begin, new_array_end);
+        print_array(output, new_array_begin, new_array_end);
         free(new_array_begin);
     }
     else
     {
-        if (argc == 3)
+        if (argc == 4)
         {
             fprintf(stderr, "Incorrect arguments!");
             return INCORRECT_ARG;
@@ -72,7 +81,13 @@ int main(int argc, char **argv)
 
         mysort(array, size, sizeof(array[0]), compare_inc);
 
-        print_array(stdout, array, array + size);
+        print_array(output, array, array + size);
+    }
+    
+    if (fclose(output) != SUCCESS)
+    {
+        fprintf(stderr, "%s", strerror(errno));
+        return errno;
     }
 
     free(array);
