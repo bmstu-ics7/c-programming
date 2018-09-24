@@ -31,13 +31,13 @@ void mysort(void *base, size_t nmemb, size_t size,
 {
     for (int i = 0; i < nmemb; i++)
     {
-        void* max = base;
-        for (void* j = base; j < base + (nmemb - i) * size; j += size)
+        char* max = base;
+        for (char* j = base; j < (char*)base + (nmemb - i) * size; j += size)
             if (compar(j, max) > 0)
             {
                 max = j;
             }
         
-        swap(max, base + (nmemb - 1 - i) * size, size);    
+        swap(max, (char*)base + (nmemb - 1 - i) * size, size);
     }
 }
