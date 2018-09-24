@@ -2,7 +2,7 @@
 
 int err_cnt = 0;
 
-int assert(const int expected, const int recieved, const char* const test_name)
+int assert(const int expected, const int recieved, const char * const test_name)
 {
     if (expected == recieved)
     {
@@ -23,8 +23,8 @@ int assert(const int expected, const int recieved, const char* const test_name)
     }
 }
 
-int assert_array(const int* const expected, const int* const recieved, 
-        const int size, const char* const test_name)
+int assert_array(const int * const expected, const int * const recieved, 
+        const int size, const char * const test_name)
 {
     int count_right = 0;
 
@@ -51,7 +51,7 @@ int assert_array(const int* const expected, const int* const recieved,
         printf("\nrecieved: ");
 
         for (int i = 0; i < size; i++)
-            printf("%d ",  recieved[i]);
+            printf("%d ", recieved[i]);
 
         printf(WHITE "\n\n");
                 
