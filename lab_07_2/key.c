@@ -4,7 +4,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int size = 0;
 
-    for (const int* pa = pb_src; pa < pe_src; pa++)
+    for (const int *pa = pb_src; pa < pe_src; pa++)
     {
         if (*pa >= 0)
             size++;
@@ -20,8 +20,8 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 
     *pb_dst = malloc(size * SIZE);
 
-    const int* pa = pb_src;
-    int* pb = *pb_dst;
+    const int *pa = pb_src;
+    int *pb = *pb_dst;
 
     for (int i = 0; i < size; i++)
         *(pb++) = *(pa++);
