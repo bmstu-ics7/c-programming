@@ -46,6 +46,7 @@ int main(int argc, char **argv)
     if (fclose(file) != SUCCESS)
     {
         fprintf(stderr, "%s", strerror(errno));
+        free(array);
         return errno;
     }
 
@@ -55,6 +56,7 @@ int main(int argc, char **argv)
     if (output == NULL)
     {
         fprintf(stderr, "%s", strerror(errno));
+        free(array);
         return errno;
     }
 
@@ -84,13 +86,13 @@ int main(int argc, char **argv)
         print_array(output, array, array + size);
     }
     
+    free(array);
+    
     if (fclose(output) != SUCCESS)
     {
         fprintf(stderr, "%s", strerror(errno));
         return errno;
     }
-
-    free(array);
 
     return SUCCESS;
 }
