@@ -97,6 +97,16 @@ int main(int argc, char **argv)
         }
 
         mysort(array, size, sizeof(array[0]), compare_inc);
+        
+        FILE* output = NULL;
+        output = fopen(argv[2], "w");
+        
+        if (output == NULL)
+        {
+            fprintf(stderr, "%s", strerror(errno));
+            free(array);
+            return errno;
+        }
 
         print_array(output, array, array + size);
         
