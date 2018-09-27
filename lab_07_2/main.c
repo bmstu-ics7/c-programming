@@ -64,23 +64,27 @@ int main(int argc, char **argv)
         return errno;
     }
 
-    char *pstr = argv[3];
-    if (argc == 4 && pstr[0] == 'f' && pstr[1] == 0)
+    if (argc == 4)
     {
-        int *new_array_begin, *new_array_end;
-
-        if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
+        char *pstr = argv[3];
+        
+        if (pstr[0] == 'f' && pstr[1] == 0)
         {
-            free(array);
+            int *new_array_begin, *new_array_end;
+
+            if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
+            {
+                free(array);
+                free(new_array_begin);
+                fclose(output);
+                return VOID_ARRAY;
+            }
+
+            mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
+
+            print_array(output, new_array_begin, new_array_end);
             free(new_array_begin);
-            fclose(output);
-            return VOID_ARRAY;
         }
-
-        mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
-
-        print_array(output, new_array_begin, new_array_end);
-        free(new_array_begin);
     }
     else
     {
