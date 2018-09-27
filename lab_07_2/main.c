@@ -72,7 +72,6 @@ int main(int argc, char **argv)
         if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
         {
             free(array);
-            free(new_array_begin);
             fclose(output);
             return VOID_ARRAY;
         }
