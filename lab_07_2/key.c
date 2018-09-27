@@ -3,6 +3,12 @@
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int size = 0;
+    
+    if (pb_src == NULL)
+    {
+        fprintf(stderr, "Null array!");
+        return VOID_ARRAY;
+    }
 
     for (const int *pa = pb_src; pa < pe_src; pa++)
     {

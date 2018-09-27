@@ -34,6 +34,7 @@ int main(int argc, char **argv)
     if (file == NULL)
     {
         fprintf(stderr, "%s", strerror(errno));
+        fclose(file);
         return errno;
     }
 
@@ -43,6 +44,7 @@ int main(int argc, char **argv)
     if ((code = input_array(file, &array, &size)) != SUCCESS)
     {
         free(array);
+        fclose(file);
         return code;
     }
 
