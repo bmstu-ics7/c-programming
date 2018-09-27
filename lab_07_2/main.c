@@ -102,6 +102,7 @@ int main(int argc, char **argv)
     if (fclose(output) != SUCCESS)
     {
         fprintf(stderr, "%s", strerror(errno));
+        free(array);
         return errno;
     }
 
