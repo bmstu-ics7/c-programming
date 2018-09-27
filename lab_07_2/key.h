@@ -6,6 +6,7 @@
 
 #define SUCCESS 0
 #define VOID_ARRAY -4
+#define NULL_ARRAY -5
 
 #define SIZE sizeof(int)
 

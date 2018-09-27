@@ -7,6 +7,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     if (pb_src == NULL)
     {
         fprintf(stderr, "Null array!");
+        return NULL_ARRAY;
+    }
+    
+    if (pb_src == pe_src)
+    {
+        fprintf(stderr, "Void arrat!");
         return VOID_ARRAY;
     }
 
