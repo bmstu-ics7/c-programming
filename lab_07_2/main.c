@@ -54,16 +54,6 @@ int main(int argc, char **argv)
         return errno;
     }
 
-    FILE* output = NULL;
-    output = fopen(argv[2], "w");
-
-    if (output == NULL)
-    {
-        fprintf(stderr, "%s", strerror(errno));
-        free(array);
-        return errno;
-    }
-
     char *pstr = argv[3];
     if (argc == 4 && pstr[0] == 'f' && pstr[1] == 0)
     {
@@ -77,9 +67,25 @@ int main(int argc, char **argv)
         }
 
         mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
+        
+        FILE* output = NULL;
+        output = fopen(argv[2], "w");
+        
+        if (output == NULL)
+        {
+            fprintf(stderr, "%s", strerror(errno));
+            free(array);
+            return errno;
+        }
 
         print_array(output, new_array_begin, new_array_end);
         free(new_array_begin);
+        
+        if (fclose(output) != SUCCESS)
+        {
+            fprintf(stderr, "%s", strerror(errno));
+            return errno;
+        }
     }
     else
     {
@@ -93,15 +99,15 @@ int main(int argc, char **argv)
         mysort(array, size, sizeof(array[0]), compare_inc);
 
         print_array(output, array, array + size);
+        
+        if (fclose(output) != SUCCESS)
+        {
+            fprintf(stderr, "%s", strerror(errno));
+            return errno;
+        }
     }
     
     free(array);
-    
-    if (fclose(output) != SUCCESS)
-    {
-        fprintf(stderr, "%s", strerror(errno));
-        return errno;
-    }
 
     return SUCCESS;
 }
