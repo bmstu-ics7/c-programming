@@ -34,7 +34,6 @@ int main(int argc, char **argv)
     if (file == NULL)
     {
         fprintf(stderr, "%s", strerror(errno));
-        fclose(file);
         return errno;
     }
 
