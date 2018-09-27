@@ -26,7 +26,10 @@ int input_array(FILE* file, int **array, int *size)
 
     for (int i = 0; i < *size; i++)
         if (fscanf(file, "%d", pa++) != 1)
+        {
+            free(array);
             return INCORRECT_FILE;
+        }
 
     return SUCCESS;
 }
