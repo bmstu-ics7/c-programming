@@ -1,5 +1,18 @@
 #include "key.h"
 
+/*
+ * Копирует в новый массив все элементы до первого отрицательного,
+ * в случае отсутствия отрицательных элементов, полностью копирует массив
+ *
+ * @param pb_src [in]
+ * @param pe_src [in]
+ * @param pb_dst [out]
+ * @param pe_dst [out]
+ *
+ * @return возвращает SUCCESS, если ошибки нет,
+ * иначе возвращает VOID_ARRAY и NULL_ARRAY
+ */
+
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int size = 0;

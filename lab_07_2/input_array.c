@@ -1,5 +1,16 @@
 #include "input_array.h"
 
+/*
+ * Аллоцирует массив и считывает его из файла
+ *
+ * @param file [in]
+ * @param array [out]
+ * @param size [out]
+ *
+ * @return возвращает SUCCESS, если ошибки нет,
+ * иначе возвращает VOID_FILE или INCORRECT_FILE
+ */
+
 int input_array(FILE* file, int **array, int *size)
 {
     int check;
