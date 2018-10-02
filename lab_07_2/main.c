@@ -2,9 +2,12 @@
  * Сортировка выбором
  *
  * Функция-фильтр:
- * В массиве остаются элементы, которые больше суммы элементов расположенных 
- * за ним. Последний элемент в отфильтрованный массив не попадает никогда, 
- * потому что его не с чем сравнивать.
+ * В массиве остаются элементы от нулевого до m-го, где
+ * m - индекс первого отрицательного элемента этого массива либо
+ * число n (размер исходного массива), если такого элемента
+ * в массиве нет. Т.е. отфильтрованный массив содержит элементы,
+ * расположенные перед первым отрицательным элементом,
+ * или весь исходный массив, если отрицательные элементы отсутствуют.
  */
 
 #include <stdio.h>
@@ -19,6 +22,25 @@
 
 #define INCORRECT_ARG -3
 #define VOID_ARRAY -4
+
+int sort_key(FILE* output, sconst int *const array, const int size)
+{
+    int *new_array_begin, *new_array_end;
+    
+    if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
+    {
+        free(array);
+        fclose(output);
+        return VOID_ARRAY;
+    }
+    
+    mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
+    
+    print_array(output, new_array_begin, new_array_end);
+    free(new_array_begin);
+    
+    return SUCCESS;
+}
 
 int main(int argc, char **argv)
 {
@@ -67,19 +89,8 @@ int main(int argc, char **argv)
 
     if (argc == 4 && pstr[0] == 'f' && pstr[1] == 0)
     {
-        int *new_array_begin, *new_array_end;
-
-        if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
-        {
-            free(array);
-            fclose(output);
+        if (sort_key(output, array, size) != SUCCESS)
             return VOID_ARRAY;
-        }
-
-        mysort(new_array_begin, new_array_end - new_array_begin, sizeof(array[0]), compare_inc);
-
-        print_array(output, new_array_begin, new_array_end);
-        free(new_array_begin);
     }
     else
     {
