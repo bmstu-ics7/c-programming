@@ -23,13 +23,13 @@
 #define INCORRECT_ARG -3
 #define VOID_ARRAY -4
 
-int sort_key(FILE* output, sconst int *const array, const int size)
+int sort_key(FILE* output, const int *const array, const int size)
 {
     int *new_array_begin, *new_array_end;
     
     if (key(array, array + size, &new_array_begin, &new_array_end) != SUCCESS)
     {
-        free(array);
+        free((int*)array);
         fclose(output);
         return VOID_ARRAY;
     }
