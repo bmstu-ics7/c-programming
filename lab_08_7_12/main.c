@@ -41,7 +41,8 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
     
     double **res_mat = NULL;
     int n = 0, m = 0;
-    switch(act[0])
+
+    switch (act[0])
     {
         case 'a':
             if (mat2)
