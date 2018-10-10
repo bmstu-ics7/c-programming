@@ -7,6 +7,9 @@ int input_matrix(FILE* file, double ***matrix, int *n, int *m)
     
     if (fscanf(file, "%d", m) != 1)
         return INCORRECT_FILE;
+
+    if (*n <= 0 || *m <= 0)
+        return INCORRECT_FILE;
     
     *matrix = allocate_matrix(*n, *m);
     
