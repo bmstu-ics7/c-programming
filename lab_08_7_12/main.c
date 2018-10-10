@@ -19,19 +19,15 @@ int return_error(int error)
         case ALLOCATE_ERROR:
             fprintf(stderr, "Allocate failed!\n");
             return error;
-            
         case INCORRECT_FILE:
             fprintf(stderr, "Incorrect file!\n");
-            return error;
-            
+            return error;   
         case ARG_ERROR:
             fprintf(stderr, "Arguments error!\n");
             return error;
-            
         case OPERATION_ERROR:
             fprintf(stderr, "Impossible operation!\n");
             return error;
-            
         default:
             fprintf(stderr, "%s", strerror(errno));
             return errno;
@@ -45,7 +41,6 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
     
     double **res_mat = NULL;
     int n = 0, m = 0;
-    
     switch(act[0])
     {
         case 'a':
@@ -166,11 +161,12 @@ int main(int argc, char **argv)
     if (res == NULL)
     {
         free_matrix(mat1);
-        if (mat2) free_matrix(mat2);
+
+        if (mat2) 
+            free_matrix(mat2);
+
         return return_error(errno);
     }
-    
+
     return action(res, mat1, n1, m1, mat2, n2, m2, argv[1]);
 }
-
-// app.exe action mtr_1.txt [mtr_2.txt] res.txt
