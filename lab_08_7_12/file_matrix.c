@@ -30,7 +30,7 @@ void print_matrix(FILE* file, double **matrix, const int n, const int m)
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
-            fprintf(file, "%1.3f ", matrix[i][j]);
+            fprintf(file, "%lf ", matrix[i][j]);
         
         fprintf(file, "\n");
     }
