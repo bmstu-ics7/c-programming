@@ -26,12 +26,19 @@ int input_matrix(FILE* file, double ***matrix, int *n, int *m)
 
 void print_matrix(FILE* file, double **matrix, const int n, const int m)
 {
-    fprintf(file, "%d %d\n", n, m);
+    fprintf(file, "%d %d ", n, m);
+
+    int count = 0;
+
     for (int i = 0; i < n; i++)
-    {
         for (int j = 0; j < m; j++)
-            fprintf(file, "%lf ", matrix[i][j]);
-        
-        fprintf(file, "\n");
-    }
+            if (matrix[i][j] != 0)
+                count++;
+
+    fprintf(file, "%d\n", count);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            if (matrix[i][j] != 0)
+                fprintf(file, "%d %d %lf\n", i + 1, j + 1, matrix[i][j]);
 }
