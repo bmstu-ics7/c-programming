@@ -147,13 +147,22 @@ int main(int argc, char **argv)
         f2 = fopen(argv[3], "r");
         
         if (f2 == NULL)
+        {
+            free_matrix(mat1);
             return return_error(errno);
+        }
         
         code = input_matrix(f2, &mat2, &n2, &m2);
         
         if (code != SUCCESS)
         {
+            fclose(f2);
+
             free_matrix(mat1);
+
+            if (mat2)
+                free_matrix(mat2);
+
             return return_error(code);
         }
         
