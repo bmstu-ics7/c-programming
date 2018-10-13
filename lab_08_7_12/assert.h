@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #ifndef ASSERT_H
 #define ASSERT_H

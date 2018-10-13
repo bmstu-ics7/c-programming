@@ -63,7 +63,7 @@ int assert_matrix(double **expected, double **recieved, const int n, const int m
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            if (expected[i][j] != recieved[i][j])
+            if (fabs(expected[i][j] - recieved[i][j]) > 1e-8)
             {
                 count_false++;
                 break;
