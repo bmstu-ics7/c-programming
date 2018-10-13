@@ -65,7 +65,7 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
             fclose(res);
             return return_error(ARG_ERROR);
         case 'o':
-            if (mat2 == NULL)
+            if (!mat2)
             {
                 res_mat = operation(mat1, n1, m1, &n, &m);
                 break;
@@ -90,7 +90,10 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
     print_matrix(res, res_mat, n, m);
     
     free_matrix(mat1);
-    free_matrix(mat2);
+
+    if (mat2)
+        free_matrix(mat2);
+
     free_matrix(res_mat);
     
     if (fclose(res) != SUCCESS)
