@@ -2,6 +2,17 @@
 
 int err_cnt = 0;
 
+/*
+ * Сравнивает два целых числа 
+ *
+ * @param expected [in]
+ * @param recieved [in]
+ * @param test_name [in]
+ *
+ * @return возвращает SUCCESS в случае равных оидаемого
+ * и полученного результатов и WRONG иначе
+*/
+
 int assert(const int expected, const int recieved, const char *const test_name)
 {
     if (expected == recieved)
@@ -21,6 +32,18 @@ int assert(const int expected, const int recieved, const char *const test_name)
         return WRONG;
     }
 }
+
+/*
+ * Сравнивает два массива
+ * 
+ * @param expected [in]
+ * @param recieved [in]
+ * @param size [in]
+ * @param test_name [in]
+ *
+ * @return возвращает SUCCESS в случае равных оидаемого
+ * и полученного результатов и WRONG иначе
+*/
 
 int assert_array(const int *const expected, const int *const recieved, const int size, const char *const test_name)
 {
@@ -56,6 +79,19 @@ int assert_array(const int *const expected, const int *const recieved, const int
         return WRONG;
     }
 }
+
+/*
+ * Сравнивает две матрицы
+ * 
+ * @param expected [in]
+ * @param recieved [in]
+ * @param n [in]
+ * @param m [in]
+ * @param test_name [in]
+ *
+ * @return возвращает SUCCESS в случае равных оидаемого
+ * и полученного результатов и WRONG иначе
+*/
 
 int assert_matrix(double **expected, double **recieved, const int n, const int m, const char *const test_name)
 {
@@ -103,6 +139,12 @@ int assert_matrix(double **expected, double **recieved, const int n, const int m
         return WRONG;
     }
 }
+
+/*
+ * Выводит результат тестирования
+ *  
+ * @param test_name [in]
+*/
 
 void print_errors(const char *const test_name)
 {
