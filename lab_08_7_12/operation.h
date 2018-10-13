@@ -1,3 +1,7 @@
+#include <math.h>
+
+#include "file_matrix.h"
+
 #ifndef __OPERATION_H
 #define __OPERATION_H
 

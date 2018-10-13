@@ -1,73 +1,86 @@
 #include "operation.h"
-#include "file_matrix.h"
 
-double **operation(double **mat, int n, int m, int *nr, int *mr)
+double **operation(double **matrix, int n, int m, int *nr, int *mr)
 {
-    // Нули на главной диагонали ломают прогу
-    
     if (n != m)
         return NULL;
-    
-    double **ed = allocate_matrix(n, m);
-    
-    if (ed == NULL)
-        return NULL;
-    
-    *nr = n;
-    *mr = m;
-    
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
+
+    int size = n;
+    double **ed = allocate_matrix(size, size);
+
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
             ed[i][j] = i == j ? 1 : 0;
 
-    for (int i = 0; i < n - 1; i++)
+    for (int row = 0; row < size; row++)
     {
-        for (int j = i + 1; j < n; j++)
-            for (int k = 0; k < m; k++)
-            {
-                mat[j][k] *= mat[i][i];
-                ed[j][k] *= ed[i][i];
-            }
-        
-        for (int j = i + 1; j < n; j++)
+        if (fabs(matrix[row][row]) < 1e-8)
         {
-            while (mat[j][i] != 0)
+            int change = 0;
+
+            for (int i = row + 1; i < size; i++)
             {
-                if (mat[j][i] * mat[i][i] >= 0)
-                    for (int k = 0; k < m; k++)
+                if (fabs(matrix[i][row]) > 1e-8)
+                {
+                    for (int j = 0; j < size; j++)
                     {
-                        mat[j][k] -= mat[i][k];
-                        ed[j][k] -= ed[i][k];
+                        double temp;
+                            
+                        temp = matrix[row][j];
+                        matrix[row][j] = matrix[i][j];
+                        matrix[i][j] = temp;
+
+                        temp = ed[row][j];
+                        ed[row][j] = ed[i][j];
+                        ed[i][j] = temp;
                     }
-                else
-                    for (int k = 0; k < m; k++)
-                    {
-                        mat[j][k] += mat[i][k];
-                        ed[j][k] += ed[i][k];
-                    }
+
+                    change = 1;
+                    break;
+                }
+            }
+
+            if (!change)
+            {
+                free_matrix(ed);
+                return NULL;
+            }
+        }
+
+        double v = matrix[row][row];
+
+        for (int j = 0; j < size; j++)
+        {
+            matrix[row][j] /= v;
+            matrix[row][j] /= v;
+        }
+
+        for (int i = row + 1; i < size; i++)
+        {
+            double v = matrix[i][row];
+
+            for (int j = 0; j < size; j++)
+            {
+                matrix[i][j] -= v * matrix[row][j];
+                ed[i][j] -= v * ed[row][j];
             }
         }
     }
-    
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-        {
-            mat[i][j] /= mat[i][i];
-            ed[i][j] /= ed[i][i];
-        }
-    
-    for (int i = n - 2; i >= 0; i--)
+
+    for (int row = size - 1; row > 0; row--)
     {
-        for (int j = i + 1; j < n; j++)
+        for (int i = row - 1; i >= 0; i--)
         {
-            int v = mat[i][j];
-            for (int k = 0; k < m; k++)
+            double v = matrix[i][row];
+
+            for (int j = 0; j < size; j++)
             {
-                mat[i][k] -= v * mat[j][k];
-                ed[i][k] -= v * ed[j][k];
+                matrix[i][j] -= v * matrix[row][j];
+                ed[i][j] -= v * ed[row][j];
             }
         }
     }
-    
+
     return ed;
 }
+
