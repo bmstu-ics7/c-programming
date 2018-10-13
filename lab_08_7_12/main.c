@@ -127,7 +127,14 @@ int main(int argc, char **argv)
     code = input_matrix(f1, &mat1, &n1, &m1);
     
     if (code != SUCCESS)
+    {
+        fclose(f1);
+
+        if (mat1)
+            free_matrix(mat1);
+
         return return_error(code);
+    }
     
     if (fclose(f1) != SUCCESS)
     {
