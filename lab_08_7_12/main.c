@@ -96,7 +96,7 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
             fclose(res);
             return return_error(ARG_ERROR);
         case 'h':
-            printf("./app.exe action file1 [file2] file_res\nactions:\n[a] - summ\n[m] - ")
+            printf("./app.exe action file1 [file2] file_res\nactions:\n[a] - summ\n[m] - ");
             break;
         default:
             return return_error(ARG_ERROR);
