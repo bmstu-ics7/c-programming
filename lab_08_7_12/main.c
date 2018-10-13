@@ -82,7 +82,10 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
     if (res_mat == NULL)
     {
         free_matrix(mat1);
-        free_matrix(mat2);
+
+        if (mat2)
+            free_matrix(mat2);
+        
         fclose(res);
         return return_error(ALLOCATE_ERROR);
     }
