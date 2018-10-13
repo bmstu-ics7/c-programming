@@ -1,5 +1,17 @@
 #include "operation.h"
 
+void kek(double **matrix, int s)
+{
+    for (int i = 0; i < s; i++)
+    {
+        for (int j = 0; j < s; j++)
+            printf("%lf ", matrix[i][j]);
+
+        printf("\n");
+    }
+    printf("\n\n");
+}
+
 double **operation(double **matrix, int n, int m, int *nr, int *mr)
 {
     if (n != m)
@@ -55,7 +67,7 @@ double **operation(double **matrix, int n, int m, int *nr, int *mr)
         for (int j = 0; j < size; j++)
         {
             matrix[row][j] /= v;
-            matrix[row][j] /= v;
+            ed[row][j] /= v;
         }
 
         for (int i = row + 1; i < size; i++)
