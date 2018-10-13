@@ -1,5 +1,17 @@
 #include "file_matrix.h"
 
+/*
+ * Вводит матрицу из файла
+ *
+ * @param file [in]
+ * @param matrix [out]
+ * @param n [out]
+ * @param m [out]
+ *
+ * @return возвращает SUCCESS при успешном вводе и
+ * код ошибки в остальных случаях
+*/
+
 int input_matrix(FILE* file, double ***matrix, int *n, int *m)
 {
     if (fscanf(file, "%d", n) != 1)
@@ -23,6 +35,15 @@ int input_matrix(FILE* file, double ***matrix, int *n, int *m)
     
     return SUCCESS;
 }
+
+/*
+ * Выводит матрицу в файл
+ *
+ * @param file [in]
+ * @param matrix [in]
+ * @param n [in]
+ * @param m [in]
+*/
 
 void print_matrix(FILE* file, double **matrix, const int n, const int m)
 {

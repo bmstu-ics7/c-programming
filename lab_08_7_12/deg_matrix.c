@@ -1,5 +1,21 @@
 #include "deg_matrix.h"
 
+/*
+ * Умножает две матрицы и возвращает результат
+ *
+ * @param mat1 [in]
+ * @param n1 [in]
+ * @param m1 [in]
+ * @param mat2 [in]
+ * @param n2 [in]
+ * @param m2 [in]
+ * @param n [out]
+ * @param m [out]
+ *
+ * @return возвращает NULL в случае ошибки и результат
+ * умножения при успешном выполнении
+*/
+
 double **deg_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m)
 {
     if (m1 != n2)

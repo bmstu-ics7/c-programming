@@ -1,16 +1,17 @@
 #include "operation.h"
 
-void kek(double **matrix, int s)
-{
-    for (int i = 0; i < s; i++)
-    {
-        for (int j = 0; j < s; j++)
-            printf("%lf ", matrix[i][j]);
-
-        printf("\n");
-    }
-    printf("\n\n");
-}
+/*
+ * Находит обратную матрицу методом элементарных преобразований и озвращает ее
+ *
+ * @param matrix [in]
+ * @param n [in]
+ * @param m [in]
+ * @param nr [out]
+ * @param mr [out]
+ *
+ * @return возвращает NULL в случае ошибки или обратную матрицу
+ * в случае удачного выполнения
+*/
 
 double **operation(double **matrix, int n, int m, int *nr, int *mr)
 {

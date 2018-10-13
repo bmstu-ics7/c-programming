@@ -12,6 +12,14 @@
 #define ARG_ERROR -3
 #define OPERATION_ERROR -4
 
+/*
+ * Выводит сообщение об ошибке и возвращает ее код
+ *
+ * @param error [in]
+ *
+ * @return возвращает введенный код ошибки
+*/
+
 int return_error(int error)
 {
     switch (error)
@@ -33,6 +41,18 @@ int return_error(int error)
             return errno;
     }
 }
+
+/*
+ * Выполняет одну из доступных операций
+ *
+ * @param res [out]
+ * @param mat1 [in]
+ * @param n1 [in]
+ * @param m1 [in]
+ *
+ * @return возвращает SUCCESS в случае удачного выполнения и код ошибки
+ * в остальных случаях
+*/
 
 int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int m2, char *act)
 {
@@ -75,6 +95,9 @@ int action(FILE* res, double **mat1, int n1, int m1, double **mat2, int n2, int 
             free_matrix(mat2);
             fclose(res);
             return return_error(ARG_ERROR);
+        case 'h':
+            printf("./app.exe action file1 [file2] file_res\nactions:\n[a] - summ\n[m] - ")
+            break;
         default:
             return return_error(ARG_ERROR);
     }

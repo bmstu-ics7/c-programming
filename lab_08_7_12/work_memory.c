@@ -1,5 +1,15 @@
 #include "work_memory.h"
 
+/*
+ * Создает область памяти для матрицы
+ *
+ * @param n [in]
+ * @param m [in]
+ *
+ * @return возвращает NULL в случае ошибки и
+ * указатель на матрицу в случае успеха
+*/
+
 double **allocate_matrix(int n, int m)
 {
     double **pointers, *data;
@@ -19,6 +29,12 @@ double **allocate_matrix(int n, int m)
     
     return pointers;
 }
+
+/*
+ * Освобождает память, выделенную под матрицу
+ *
+ * @param matrix [in]
+*/
 
 void free_matrix(double **matrix)
 {
