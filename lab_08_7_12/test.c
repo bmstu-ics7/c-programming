@@ -259,8 +259,24 @@ void test_operation(void)
 
 int main(void)
 {
-    test_sum();
-    test_deg();
-    test_operation();
+    //test_sum();
+    //test_deg();
+    //test_operation();
+    
+    test1_sum();
+    test2_sum();
+    test3_sum();
+    print_errors("test_sum");
+
+    test1_deg();
+    test2_deg();
+    test3_deg();
+    print_errors("test_deg");
+
+    test1_operation();
+    test2_operation();
+    test3_operation();
+    print_errors("test_operation");
+
     return SUCCESS;
 }
