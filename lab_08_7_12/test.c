@@ -5,7 +5,7 @@
 #include "sum_matrix.h"
 #include "deg_matrix.h"
 #include "operation.h"
-
+/*
 void generate_matrix(double **matrix, int n, int m, double *el)
 {
     for (int i = 0; i < n; i++)
@@ -256,13 +256,13 @@ void test_operation(void)
 
     print_errors("test_operation");
 }
-
+*/
 int main(void)
 {
     //test_sum();
     //test_deg();
     //test_operation();
-    
+    /*
     test1_sum();
     test2_sum();
     test3_sum();
@@ -277,6 +277,7 @@ int main(void)
     test2_operation();
     test3_operation();
     print_errors("test_operation");
-
+*/
+    printf("kek\n");
     return SUCCESS;
 }
