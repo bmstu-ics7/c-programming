@@ -1,10 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "work_memory.h"
 #include "assert.h"
-#include "sum_matrix.h"
-#include "deg_matrix.h"
-#include "operation.h"
 
 double **allocate_matrix(int n, int m)
 {

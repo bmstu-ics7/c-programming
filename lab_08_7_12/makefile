@@ -16,7 +16,7 @@ endif
 app.exe: work_memory.o file_matrix.o sum_matrix.o deg_matrix.o operation.o main.o 
 	$(CC) -o app.exe $^
 
-test.exe: assert.o work_memory.o sum_matrix.o deg_matrix.o operation.o test.o
+test.exe: assert.o test.o
 	$(CC) -o test.exe $^
 
 clean:
