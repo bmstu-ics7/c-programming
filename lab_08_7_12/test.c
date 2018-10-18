@@ -3,15 +3,164 @@
 
 #include "assert.h"
 
-double **allocate_matrix(int n, int m);
+double **allocate_matrix(int n, int m)
+{
+    double **pointers, *data;
+    
+    pointers = malloc(n * sizeof(pointers[0]));
+    
+    if (pointers == NULL)
+        return NULL;
+    
+    data = malloc(n * m * sizeof(data[0]));
+    
+    if (data == NULL)
+        return NULL;
+    
+    for (int i = 0; i < n; i++)
+        pointers[i] = data + i * m;
+        
+        return pointers;
+}
 
-void free_matrix(double **matrix);
+void free_matrix(double **matrix)
+{
+    free(matrix[0]);
+    
+    free(matrix);
+}
 
-double **sum_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m);
+double **sum_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m)
+{
+    if (n1 != n2 || m1 != m2)
+        return NULL;
+    
+    double **mat = allocate_matrix(n1, m1);
+    
+    if (mat == NULL)
+        return NULL;
+    
+    *n = n1;
+    *m = m1;
+    
+    for (int i = 0; i < n1; i++)
+        for (int j = 0; j < m1; j++)
+            mat[i][j] = mat1[i][j] + mat2[i][j];
+            
+            return mat;
+}
 
-double **deg_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m);
+double **deg_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m)
+{
+    if (m1 != n2)
+        return NULL;
+    
+    double **mat = allocate_matrix(n1, m2);
+    
+    if (mat == NULL)
+        return NULL;
+    
+    *n = n1;
+    *m = m2;
+    
+    for (int i = 0; i < n1; i++)
+        for (int j = 0; j < m2; j++)
+        {
+            mat[i][j] = 0;
+            
+            for (int k = 0; k < m1; k++)
+                mat[i][j] += mat1[i][k] * mat2[k][j];
+        }
+    
+    return mat;
+}
 
-double **operation(double **matrix, int n, int m, int *nr, int *mr);
+double **operation(double **matrix, int n, int m, int *nr, int *mr)
+{
+    if (n != m)
+        return NULL;
+    
+    int size = n;
+    double **ed = allocate_matrix(size, size);
+    
+    *nr = size;
+    *mr = size;
+    
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            ed[i][j] = i == j ? 1 : 0;
+            
+            for (int row = 0; row < size; row++)
+            {
+                if (fabs(matrix[row][row]) < 1e-8)
+                {
+                    int change = 0;
+                    
+                    for (int i = row + 1; i < size; i++)
+                    {
+                        if (fabs(matrix[i][row]) > 1e-8)
+                        {
+                            for (int j = 0; j < size; j++)
+                            {
+                                double temp;
+                                
+                                temp = matrix[row][j];
+                                matrix[row][j] = matrix[i][j];
+                                matrix[i][j] = temp;
+                                
+                                temp = ed[row][j];
+                                ed[row][j] = ed[i][j];
+                                ed[i][j] = temp;
+                            }
+                            
+                            change = 1;
+                            break;
+                        }
+                    }
+                    
+                    if (!change)
+                    {
+                        free_matrix(ed);
+                        return NULL;
+                    }
+                }
+                
+                double v = matrix[row][row];
+                
+                for (int j = 0; j < size; j++)
+                {
+                    matrix[row][j] /= v;
+                    ed[row][j] /= v;
+                }
+                
+                for (int i = row + 1; i < size; i++)
+                {
+                    double v = matrix[i][row];
+                    
+                    for (int j = 0; j < size; j++)
+                    {
+                        matrix[i][j] -= v * matrix[row][j];
+                        ed[i][j] -= v * ed[row][j];
+                    }
+                }
+            }
+    
+    for (int row = size - 1; row > 0; row--)
+    {
+        for (int i = row - 1; i >= 0; i--)
+        {
+            double v = matrix[i][row];
+            
+            for (int j = 0; j < size; j++)
+            {
+                matrix[i][j] -= v * matrix[row][j];
+                ed[i][j] -= v * ed[row][j];
+            }
+        }
+    }
+    
+    return ed;
+}
 
 void generate_matrix(double **matrix, int n, int m, double *el)
 {
