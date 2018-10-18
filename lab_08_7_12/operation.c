@@ -21,6 +21,9 @@ double **operation(double **matrix, int n, int m, int *nr, int *mr)
     int size = n;
     double **ed = allocate_matrix(size, size);
 
+    if (ed == NULL)
+        return NULL;
+
     *nr = size;
     *mr = size;
 
