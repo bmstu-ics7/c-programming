@@ -455,7 +455,7 @@ void test3_operation(void)
 void test4_operation(void)
 {
     double **a = allocate_matrix(2, 3);
-    double a_arr[] = { 5, 2, 8, 4 , 3, 4};
+    double a_arr[] = { 5, 2, 8, 4 , 3, 4 };
     generate_matrix(a, 2, 3, a_arr);
 
     int n, m;
