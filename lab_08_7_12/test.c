@@ -20,7 +20,7 @@ double **allocate_matrix(int n, int m)
     for (int i = 0; i < n; i++)
         pointers[i] = data + i * m;
         
-        return pointers;
+    return pointers;
 }
 
 void free_matrix(double **matrix)
@@ -47,7 +47,7 @@ double **sum_matrix(double **mat1, const int n1, const int m1, double **mat2, co
         for (int j = 0; j < m1; j++)
             mat[i][j] = mat1[i][j] + mat2[i][j];
             
-            return mat;
+    return mat;
 }
 
 double **deg_matrix(double **mat1, const int n1, const int m1, double **mat2, const int n2, const int m2, int *n, int *m)
@@ -90,60 +90,60 @@ double **operation(double **matrix, int n, int m, int *nr, int *mr)
         for (int j = 0; j < size; j++)
             ed[i][j] = i == j ? 1 : 0;
             
-            for (int row = 0; row < size; row++)
+    for (int row = 0; row < size; row++)
+    {
+        if (fabs(matrix[row][row]) < 1e-8)
+        {
+            int change = 0;
+            
+            for (int i = row + 1; i < size; i++)
             {
-                if (fabs(matrix[row][row]) < 1e-8)
+                if (fabs(matrix[i][row]) > 1e-8)
                 {
-                    int change = 0;
-                    
-                    for (int i = row + 1; i < size; i++)
-                    {
-                        if (fabs(matrix[i][row]) > 1e-8)
-                        {
-                            for (int j = 0; j < size; j++)
-                            {
-                                double temp;
-                                
-                                temp = matrix[row][j];
-                                matrix[row][j] = matrix[i][j];
-                                matrix[i][j] = temp;
-                                
-                                temp = ed[row][j];
-                                ed[row][j] = ed[i][j];
-                                ed[i][j] = temp;
-                            }
-                            
-                            change = 1;
-                            break;
-                        }
-                    }
-                    
-                    if (!change)
-                    {
-                        free_matrix(ed);
-                        return NULL;
-                    }
-                }
-                
-                double v = matrix[row][row];
-                
-                for (int j = 0; j < size; j++)
-                {
-                    matrix[row][j] /= v;
-                    ed[row][j] /= v;
-                }
-                
-                for (int i = row + 1; i < size; i++)
-                {
-                    double v = matrix[i][row];
-                    
                     for (int j = 0; j < size; j++)
                     {
-                        matrix[i][j] -= v * matrix[row][j];
-                        ed[i][j] -= v * ed[row][j];
+                        double temp;
+                        
+                        temp = matrix[row][j];
+                        matrix[row][j] = matrix[i][j];
+                        matrix[i][j] = temp;
+                        
+                        temp = ed[row][j];
+                        ed[row][j] = ed[i][j];
+                        ed[i][j] = temp;
                     }
+                    
+                    change = 1;
+                    break;
                 }
             }
+            
+            if (!change)
+            {
+                free_matrix(ed);
+                return NULL;
+            }
+        }
+        
+        double v = matrix[row][row];
+        
+        for (int j = 0; j < size; j++)
+        {
+            matrix[row][j] /= v;
+            ed[row][j] /= v;
+        }
+        
+        for (int i = row + 1; i < size; i++)
+        {
+            double v = matrix[i][row];
+            
+            for (int j = 0; j < size; j++)
+            {
+                matrix[i][j] -= v * matrix[row][j];
+                ed[i][j] -= v * ed[row][j];
+            }
+        }
+    }
     
     for (int row = size - 1; row > 0; row--)
     {
