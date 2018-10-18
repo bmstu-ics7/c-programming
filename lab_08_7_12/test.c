@@ -466,12 +466,49 @@ void test4_operation(void)
     free_matrix(a);
 }
 
+void test5_operation(void)
+{
+    double **right;
+    right = allocate_matrix(3, 3);
+    double r_arr[] = { -0.5, -0.3333333333333333, 0.3333333333333, 1, -2, 1, -0.5, 2, -1 };
+    generate_matrix(right, 3, 3, r_arr);
+
+    double **a = allocate_matrix(3, 3);
+    double a_arr[] = { 0, 2, 2, 3, 4, 5, 6, 7, 8 };
+    generate_matrix(a, 3, 3, a_arr);
+
+    int n, m;
+    double **answ = operation(a, 3, 3, &n, &m);
+
+    assert_matrix(right, answ, n, m, "test operation #5");
+
+    free_matrix(answ);
+    free_matrix(right);
+    free_matrix(a);
+}
+
+void test6_operation(void)
+{
+    double **a = allocate_matrix(3, 3);
+    double a_arr[] = { 0, 2, 3, 0, 4, 6, 0, 9, 0 };
+    generate_matrix(a, 3, 3, a_arr);
+
+    int n, m;
+    double **answ = operation(a, 3, 3, &n, &m);
+
+    assert_matrix(NULL, answ, n, m, "test operation #6");
+
+    free_matrix(a);
+}
+
 void test_operation(void)
 {
     test1_operation();
     test2_operation();
     test3_operation();
     test4_operation();
+    test5_operation();
+    test6_operation();
 
     print_errors("test_operation");
 }
