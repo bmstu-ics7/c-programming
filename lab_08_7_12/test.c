@@ -420,7 +420,7 @@ int main(void)
     test_operation();
 
     allocate_matrix(-1, -1);
-    allocate_matrix(1, -1);
+    free(allocate_matrix(1, -1));
 
     return SUCCESS;
 }
