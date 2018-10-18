@@ -95,6 +95,13 @@ int assert_array(const int *const expected, const int *const recieved, const int
 
 int assert_matrix(double **expected, double **recieved, const int n, const int m, const char *const test_name)
 {
+    if (expected == NULL && recieved == NULL)
+    {
+        printf(GREEN "%s success\n\n", test_name);
+        printf(WHITE "");
+        return SUCCESS;
+    }
+
     int count_false = 0;
 
     for (int i = 0; i < n; i++)
