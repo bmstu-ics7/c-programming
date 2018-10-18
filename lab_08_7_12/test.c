@@ -86,6 +86,10 @@ double **operation(double **matrix, int n, int m, int *nr, int *mr)
     
     int size = n;
     double **ed = allocate_matrix(size, size);
+
+
+    if (ed == NULL)
+        return NULL;
     
     *nr = size;
     *mr = size;
@@ -250,11 +254,31 @@ void test3_sum(void)
     free_matrix(b);
 }
 
+void test4_sum(void)
+{
+    double **a = allocate_matrix(2, 2);
+    double a_arr[] = { 6, 6, 6, 4 };
+    generate_matrix(a, 2, 2, a_arr);
+
+    double **b = allocate_matrix(3, 3);
+    double b_arr[] = { 1, 1, 1, 3, 3, 3, 5, 5, 5 };
+    generate_matrix(b, 3, 3, b_arr);
+
+    int n, m;
+    double **answ = sum_matrix(a, 2, 2, b, 3, 3, &n, &m);
+
+    assert_matrix(NULL, answ, n, m, "test sum #4");
+
+    free_matrix(a);
+    free_matrix(b);
+}
+
 void test_sum(void)
 {
     test1_sum();
     test2_sum();
     test3_sum();
+    test4_sum();
 
     print_errors("test_sum");
 }
@@ -336,11 +360,31 @@ void test3_deg(void)
     free_matrix(b);
 }
 
+void test4_deg(void)
+{
+    double **a = allocate_matrix(3, 3);
+    double a_arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    generate_matrix(a, 2, 2, a_arr);
+
+    double **b = allocate_matrix(2, 2);
+    double b_arr[] = { 4, 3, 2, 1 };
+    generate_matrix(b, 2, 2, b_arr);
+
+    int n, m;
+    double **answ = deg_matrix(a, 3, 3, b, 2, 2, &n, &m);
+
+    assert_matrix(NULL, answ, n, m, "test deg #4");
+
+    free_matrix(a);
+    free_matrix(b);
+}
+
 void test_deg(void)
 {
     test1_deg();
     test2_deg();
     test3_deg();
+    test4_deg();
 
     print_errors("test_deg");
 }
@@ -408,11 +452,26 @@ void test3_operation(void)
     free_matrix(a);
 }
 
+void test4_operation(void)
+{
+    double **a = allocate_matrix(2, 3);
+    double a_arr[] = { 5, 2, 8, 4 , 3, 4};
+    generate_matrix(a, 2, 3, a_arr);
+
+    int n, m;
+    double **answ = operation(a, 2, 3, &n, &m);
+
+    assert_matrix(NULL, answ, 1, 1, "test operation #4");
+
+    free_matrix(a);
+}
+
 void test_operation(void)
 {
     test1_operation();
     test2_operation();
     test3_operation();
+    test4_operation();
 
     print_errors("test_operation");
 }
@@ -424,7 +483,7 @@ int main(void)
     test_operation();
 
     allocate_matrix(-1, -1);
-    free(allocate_matrix(1, -1));
+    allocate_matrix(1, -1);
 
     return SUCCESS;
 }
