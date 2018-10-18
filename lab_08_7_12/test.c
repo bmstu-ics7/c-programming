@@ -482,8 +482,8 @@ int main(void)
     test_deg();
     test_operation();
 
-    allocate_matrix(-1, -1);
-    allocate_matrix(1, -1);
+    //allocate_matrix(-1, -1);
+    //allocate_matrix(1, -1);
 
     return SUCCESS;
 }
