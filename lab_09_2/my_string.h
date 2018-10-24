@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 #ifndef __MY_STRING_H
 #define __MY_STRING_H
