@@ -19,6 +19,9 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
         *n += len(buffer);
         
         *lineptr = realloc(*lineptr, *n);
+
+        if (*lineptr == NULL)
+            return GETLINE_ERROR;
         
         for (int i = *n - len(buffer), j = 0; i < *n; i++, j++)
         {
@@ -28,6 +31,9 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
         if ((*lineptr)[*n - 1] == '\n')
             break;
     }
+
+    if (*lineptr == NULL)
+        return GETLINE_ERROR;
 
     (*lineptr)[len(*lineptr) - 1] = '\0';
     *n = len(*lineptr);
@@ -70,5 +76,11 @@ char* str_replace(const char *source, const char *search, const char *replace)
     }
 
     return result;
+}
+
+void free_string(char *str)
+{
+    if (str)
+        free(str);
 }
 
