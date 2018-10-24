@@ -41,7 +41,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     return *n;
 }
 
-char* str_replace(const char *source, const char *search, const char *replace)
+char *str_replace(const char *source, const char *search, const char *replace)
 {
     int size = len((char*)source);
     int result_size = size;
