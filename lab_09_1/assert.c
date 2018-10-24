@@ -209,7 +209,6 @@ int assert_string(char const *const expected, char const *const recieved, const 
         printf(WHITE "");
         return WRONG;
     }
-
 }
 
 /*
