@@ -11,7 +11,7 @@ int len(char *string);
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
 
-char* str_replace(const char *source, const char *serach, const char *replace);
+char *str_replace(const char *source, const char *serach, const char *replace);
 
 void free_string(char *str);
 
