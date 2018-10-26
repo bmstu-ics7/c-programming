@@ -16,6 +16,10 @@ char *source = NULL;
 char *search = NULL;
 char *result = NULL;
 
+/*
+ * comment
+ */
+
 int all_fopen(char **argv)
 {
     file_in = NULL;
