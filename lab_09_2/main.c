@@ -7,31 +7,24 @@
 #define SUCCESS 0
 #define ARG_ERROR -2
 
-#define COUNT_ARG 5
+#define COUNT_ARG 7
 
 FILE *file_in = NULL;
 FILE *file_out = NULL;
-FILE *file_search = NULL;
-FILE *file_replace = NULL;
 
 char *source = NULL;
 char *search = NULL;
-char *replace = NULL;
 char *result = NULL;
 
 int all_fopen(char **argv)
 {
     file_in = NULL;
     file_out = NULL;
-    file_search = NULL;
-    file_replace = NULL;
 
     file_in = fopen(argv[1], "r");
     file_out = fopen(argv[2], "w");
-    file_search = fopen(argv[3], "r");
-    file_replace = fopen(argv[4], "r");
 
-    if (file_in == NULL || file_out == NULL || file_search == NULL || file_replace == NULL)
+    if (file_in == NULL || file_out == NULL)
         return errno;
 
     return SUCCESS;
@@ -39,10 +32,11 @@ int all_fopen(char **argv)
 
 int all_fclose(void)
 {
-    fclose(file_in);
-    fclose(file_out);
-    fclose(file_search);
-    fclose(file_replace);
+    if (file_in != NULL)
+        fclose(file_in);
+    
+    if (file_out != NULL)
+        fclose(file_out);
 
     if (errno != SUCCESS)
         return errno;
@@ -54,7 +48,6 @@ void all_free(void)
 {
     free_string(source);
     free_string(search);
-    free_string(replace);
     free_string(result);
 }
 
@@ -78,15 +71,12 @@ int return_error(int error)
     }
 }
 
-int replace_in_file(void)
+int replace_in_file(char **argv)
 {
     size_t n = 0;
 
-    if (my_getline(&search, &n, file_search) == GETLINE_ERROR)
-        return GETLINE_ERROR;
-
-    if (my_getline(&replace, &n, file_replace) == GETLINE_ERROR)
-        return GETLINE_ERROR;
+    char *search = argv[4];
+    char *replace = argv[6];
 
     while (my_getline(&source, &n, file_in) != GETLINE_ERROR)
     {
@@ -107,7 +97,7 @@ int main(int argc, char **argv)
     if ((code_error = all_fopen(argv)) != SUCCESS)
         return return_error(code_error);
 
-    if ((code_error = replace_in_file()) != SUCCESS)
+    if ((code_error = replace_in_file(argv)) != SUCCESS)
         return return_error(code_error);
 
     return return_error(SUCCESS);
