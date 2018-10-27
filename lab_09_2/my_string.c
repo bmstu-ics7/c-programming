@@ -44,11 +44,27 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 char *str_replace(const char *source, const char *search, const char *replace)
 {
     int size = len((char*)source);
-    int result_size = size;
     char *result = malloc(size);
+    int n = size;
 
-    for (int i = 0, j = 0, src = 0; i < size; i++)
+    for (int i = 0, src = 0, j = 0; i < size; i++)
     {
+        if (i == size - 1 && src != len((char*)search) - 1)
+        {
+            for (int k = src; k >= 0; k--)
+            {
+                result[j++] = source[i - k];
+
+                if (j == n)
+                {
+                    result = realloc(result, n * 2);
+                    n *= 2;
+                }
+            }
+
+            continue;
+        }
+
         if (source[i] == search[src])
         {
             src++;
@@ -58,6 +74,12 @@ char *str_replace(const char *source, const char *search, const char *replace)
                 for (int k = 0; k < len((char*)replace); k++)
                 {
                     result[j++] = replace[k];
+
+                    if (j == n)
+                    {
+                        result = realloc(result, n * 2);
+                        n *= 2;
+                    }
                 }
 
                 src = 0;
@@ -66,16 +88,22 @@ char *str_replace(const char *source, const char *search, const char *replace)
         else
         {
             for (int k = src; k >= 0; k--)
+            {
                 result[j++] = source[i - k];
+
+                if (j == n)
+                {
+                    result = realloc(result, n * 2);
+                    n *= 2;
+                }
+            }
 
             src = 0;
         }
-
-        if (j == result_size)
-            result = realloc(result, result_size * 2);
     }
 
     return result;
+
 }
 
 void free_string(char *str)
