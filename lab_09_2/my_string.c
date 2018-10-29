@@ -61,7 +61,6 @@ char *str_replace(const char *source, const char *search, const char *replace)
                     n *= 2;
                 }
             }
-            
             continue;
         }
 
