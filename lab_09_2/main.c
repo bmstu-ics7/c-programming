@@ -13,7 +13,6 @@ FILE *file_in = NULL;
 FILE *file_out = NULL;
 
 char *source = NULL;
-char *search = NULL;
 char *result = NULL;
 
 /*
@@ -51,7 +50,6 @@ int all_fclose(void)
 void all_free(void)
 {
     free_string(source);
-    free_string(search);
     free_string(result);
 }
 
@@ -69,6 +67,7 @@ int return_error(int error)
             return ARG_ERROR;
         case GETLINE_ERROR:
             fprintf(stderr, "%s\n", "Getline error");
+            return GETLINE_ERROR;
         default:
             fprintf(stderr, "%s\n", strerror(errno));
             return errno;
