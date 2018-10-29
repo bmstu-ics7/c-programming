@@ -16,7 +16,7 @@ endif
 app.exe: my_string.o main.o
 	$(CC) -o app.exe $^
 
-test.exe: assert.o my_string.o test.o
+test.exe: my_string.o test.o
 	$(CC) -o test.exe $^
 
 clean:
