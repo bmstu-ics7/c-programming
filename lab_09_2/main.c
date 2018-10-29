@@ -87,6 +87,9 @@ int replace_in_file(char **argv)
         fprintf(file_out, "%s\n", result);
     }
 
+    if (result == NULL)
+        return GETLINE_ERROR;
+
     return SUCCESS;
 }
 
