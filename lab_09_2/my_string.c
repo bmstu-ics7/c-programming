@@ -35,8 +35,14 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (*lineptr == NULL)
         return GETLINE_ERROR;
 
+    if (len(*lineptr) == 0)
+        return GETLINE_ERROR;
+
     (*lineptr)[len(*lineptr) - 1] = '\0';
     *n = len(*lineptr);
+
+    if (*n == 0)
+        return GETLINE_RROR;
 
     return *n;
 }
