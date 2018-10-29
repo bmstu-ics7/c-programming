@@ -85,6 +85,7 @@ int replace_in_file(char **argv)
     {
         free_string(result);
         result = str_replace(source, search, replace);
+        free_string(source);
         fprintf(file_out, "%s\n", result);
     }
 
