@@ -61,9 +61,10 @@ char *str_replace(const char *source, const char *search, const char *replace)
                     n *= 2;
                 }
             }
-
-            continue;
         }
+
+        continue;
+    }
 
         if (source[i] == search[src])
         {
@@ -103,7 +104,6 @@ char *str_replace(const char *source, const char *search, const char *replace)
     }
 
     return result;
-
 }
 
 void free_string(char *str)
