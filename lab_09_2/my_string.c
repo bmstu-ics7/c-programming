@@ -53,6 +53,12 @@ char *str_replace(const char *source, const char *search, const char *replace)
     char *result = malloc(size);
     int n = size;
 
+    if (source == NULL || search == NULL || replace == NULL || result == NULL)
+    {
+        free_string(result);
+        return NULL;
+    }
+
     for (int i = 0, src = 0, j = 0; i < size; i++)
     {
         if (i == size - 1 && src != len((char*)search) - 1)
