@@ -83,6 +83,7 @@ int replace_in_file(char **argv)
 
     while (my_getline(&source, &n, file_in) != GETLINE_ERROR)
     {
+        free_string(result);
         result = str_replace(source, search, replace);
         fprintf(file_out, "%s\n", result);
     }
