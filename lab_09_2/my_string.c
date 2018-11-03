@@ -11,10 +11,11 @@ int len(char *string)
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    /*char buffer[255];
+    char buffer[255];
     *n = 0;
 
-    *lineptr = NULL;
+    if (*lineptr == NULL || stream == NULL)
+        return GETLINE_ERROR;
 
     while (fgets(buffer, 255, stream) != NULL)
     {
@@ -46,8 +47,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (*n == 0)
         return GETLINE_ERROR;
 
-    return *n;*/
-    return getline(lineptr, n, stream);
+    return *n;
 }
 
 char *str_replace(const char *source, const char *search, const char *replace)
