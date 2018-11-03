@@ -14,7 +14,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     char buffer[255];
     *n = 0;
 
-    if (*lineptr == NULL || stream == NULL)
+    if (lineptr == NULL || stream == NULL)
         return GETLINE_ERROR;
 
     while (fgets(buffer, 255, stream) != NULL)
