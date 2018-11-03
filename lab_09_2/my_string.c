@@ -1,5 +1,7 @@
 #include "my_string.h"
 
+#include <string.h>
+
 int len(char *string)
 {
     int n = 0;
@@ -9,7 +11,7 @@ int len(char *string)
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    char buffer[255];
+    /*char buffer[255];
     *n = 0;
 
     *lineptr = NULL;
@@ -44,7 +46,8 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (*n == 0)
         return GETLINE_ERROR;
 
-    return *n;
+    return *n;*/
+    return getline(lineptr, n, stream);
 }
 
 char *str_replace(const char *source, const char *search, const char *replace)
