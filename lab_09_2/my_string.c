@@ -1,7 +1,5 @@
 #include "my_string.h"
 
-#include <string.h>
-
 int len(char *string)
 {
     int n = 0;
@@ -35,14 +33,13 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
             break;
     }
 
-    if (*lineptr == NULL)
+    if (lineptr == NULL)
         return GETLINE_ERROR;
 
     if (len(*lineptr) == 0)
         return GETLINE_ERROR;
 
-    (*lineptr)[len(*lineptr) - 1] = '\0';
-    *n = len(*lineptr);
+    (*lineptr)[*n] = '\0';
 
     if (*n == 0)
         return GETLINE_ERROR;

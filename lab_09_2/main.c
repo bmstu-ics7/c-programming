@@ -15,10 +15,6 @@ FILE *file_out = NULL;
 char *source = NULL;
 char *result = NULL;
 
-/*
- * comment
- */
-
 int all_fopen(char **argv)
 {
     file_in = NULL;
@@ -81,10 +77,13 @@ int replace_in_file(char **argv)
     char *search = argv[4];
     char *replace = argv[6];
 
+    result = NULL;
+
     while (my_getline(&source, &n, file_in) != GETLINE_ERROR)
     {
         result = str_replace(source, search, replace);
         fprintf(file_out, "%s\n", result);
+
         free_string(result);
         free_string(source);
     }
