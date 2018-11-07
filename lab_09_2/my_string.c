@@ -37,13 +37,13 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 
         if (*lineptr == NULL)
             return GETLINE_ERROR;
- 
+
         for (int i = size - len(buffer), j = 0; i < size; i++, j++)
         {
             (*lineptr)[i] = buffer[j];
         }
 
-        if ((*lineptr)[*n - 1] == '\n')
+        if ((*lineptr)[size - 1] == '\n')
             break;
     }
 
@@ -53,6 +53,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (len(*lineptr) == 0)
         return GETLINE_ERROR;
 
+    *n -= 1;
     (*lineptr)[size] = '\0';
 
     if (size == 0)
@@ -61,6 +62,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if ((*lineptr)[size - 1] == '\n')
     {
         size -= 1;
+        *n -= 1;
         (*lineptr)[size] = '\0';
     }
 
