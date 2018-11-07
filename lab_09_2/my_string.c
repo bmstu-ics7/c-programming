@@ -28,8 +28,12 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     while (fgets(buffer, SIZE_BUF, stream) != NULL)
     {
         size += len(buffer);
-        
-        *lineptr = realloc(*lineptr, size);
+
+        if (*n < size)
+        {
+            *n = size;
+            *lineptr = realloc(*lineptr, *n);
+        }
 
         if (*lineptr == NULL)
             return GETLINE_ERROR;
