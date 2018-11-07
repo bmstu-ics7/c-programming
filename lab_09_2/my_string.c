@@ -9,23 +9,23 @@ int len(char *string)
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    char buffer[255];
+    char buffer[SIZE_BUF];
 
     if (lineptr == NULL || stream == NULL || n == NULL)
         return GETLINE_ERROR;
 
     if (*n == 0)
-        *n = 255;
+        *n = SIZE_BUF;
 
     ssize_t size = 0;
 
     if (*lineptr == NULL)
     {
-        *n = 255;
+        *n = SIZE_BUF;
         *lineptr = malloc(*n);
     }
 
-    while (fgets(buffer, 255, stream) != NULL)
+    while (fgets(buffer, SIZE_BUF, stream) != NULL)
     {
         size += len(buffer);
         
@@ -33,7 +33,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 
         if (*lineptr == NULL)
             return GETLINE_ERROR;
-        
+ 
         for (int i = size - len(buffer), j = 0; i < size; i++, j++)
         {
             (*lineptr)[i] = buffer[j];
@@ -50,6 +50,15 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
         return GETLINE_ERROR;
 
     (*lineptr)[size] = '\0';
+
+    if (size == 0)
+        return GETLINE_ERROR;
+
+    if ((*lineptr)[size - 1] == '\n')
+    {
+        size -= 1;
+        (*lineptr)[size] = '\0';
+    }
 
     if (size == 0)
         return GETLINE_ERROR;

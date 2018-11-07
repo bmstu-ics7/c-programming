@@ -7,6 +7,8 @@
 
 #define GETLINE_ERROR -1
 
+#define SIZE_BUF 3
+
 int len(char *string);
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream);
