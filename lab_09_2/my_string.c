@@ -68,15 +68,12 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 
 char *str_replace(const char *source, const char *search, const char *replace)
 {
+    if (source == NULL || search == NULL || replace == NULL || result == NULL)
+        return NULL;
+
     int size = len((char*)source);
     char *result = malloc(size);
     int n = size;
-
-    if (source == NULL || search == NULL || replace == NULL || result == NULL)
-    {
-        free_string(result);
-        return NULL;
-    }
 
     for (int i = 0, src = 0, j = 0; i < size; i++)
     {
