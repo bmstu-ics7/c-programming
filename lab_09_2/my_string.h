@@ -7,7 +7,7 @@
 
 #define GETLINE_ERROR -1
 
-#define SIZE_BUF 3
+#define SIZE_BUF 128
 
 int len(char *string);
 
