@@ -37,7 +37,11 @@ void *pop_back(node_t **head)
     else
         new_last->next = NULL;
 
-    return temp->data;
+    void *data = temp->data;
+
+    free(temp);
+
+    return data;
 }
 
 node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
