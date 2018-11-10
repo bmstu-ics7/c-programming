@@ -23,21 +23,21 @@ int main(int argc, char **argv)
 
     int **matrix, n, m;
 
-    if (input_matrix(&matrix, &n, &m, file); != SUCCESS)
+    if (input_matrix(&matrix, &n, &m, file) != SUCCESS)
     {
-        free_matrix(matrix);
+        free_matrix(matrix, n);
         return INPUT_ERROR;
     }
 
     fclose(file);
 
-    FILE *file = fopen("result.out", "w");
+    file = fopen("result.out", "w");
 
     work(matrix, n, m, file);
 
     fclose(file);
     
-    free_matrix(matrix);
+    free_matrix(matrix, n);
 
     return SUCCESS;
 }
