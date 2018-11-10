@@ -16,9 +16,9 @@ endif
 build: file.o work.o main.o
 	$(CC) -o app.exe $^
 
-#run: file.o work.o main.o
-#    $(CC) -o app.exe $^
-#    ./app.exe test.in
+run: file.o work.o main.o
+	$(CC) -o app.exe $^
+	./app.exe test.in
 
 clean:
 	$(RM) *.o *.exe *.gch
