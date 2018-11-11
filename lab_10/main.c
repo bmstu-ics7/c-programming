@@ -12,7 +12,7 @@ void free_data(void *data)
 
 int main(void)
 {
-    int arr[] = {6, 3 ,7, 1, 8, 4, 9, 0, 3, 2, 5};
+    int arr[] = { 6, 3 ,7, 1, 8, 4, 9, 0, 3, 2, 5 };
 
     node_t *head = malloc(sizeof(node_t));
 
