@@ -52,21 +52,28 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
     if (comparator == NULL)
         return NULL;
 
-    node_t *temp = head;
-    node_t *before_max = NULL;
+    int count_sorted = 1;
+    int count_all = 0;
 
-    node_t *check = head;
+    for (node_t *temp = head; temp != NULL; temp = temp->next)
+        count_all++;
 
-    for (; check != NULL; check = check->next)
+    for (int i = 1; i < count_all; i++)
     {
-        for (; temp->next != NULL; temp = temp->next)
-            if (comparator(before_max->next->data, temp->next->data) > 0)
-                before_max = temp;
+        node_t *temp = head;
+        node_t *prev_temp = NULL;
 
-        node_t *max = before_max->next;
-        before_max->next = before_max->next->next;
+        for (int j = 1; j <= count_sorted; j++)
+        {
+            prev_temp = temp;
+            temp = temp->next;
+        }
 
-        sorted_insert(&head, max, comparator);
+        if (prev_temp)
+            prev_temp->next = temp->next;
+
+        sorted_insert(&head, temp, comparator);
+        count_sorted++;
     }
 
     return head;
@@ -74,7 +81,7 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
-    if (comparator(*head, element) > 0)
+    if (comparator((*head)->data, element->data) >= 0)
     {
         element->next = *head;
         *head = element;
@@ -84,7 +91,7 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
     node_t *temp = *head;
 
     for (; temp->next != NULL; temp = temp->next)
-        if (comparator(element, temp) < 0)
+        if (comparator(element->data, temp->next->data) <= 0)
         {
             element->next = temp->next;
             temp->next = element;
@@ -95,3 +102,18 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
     element->next = NULL;
     return;
 }
+
+void free_list(node_t *head, void (*free_data)(void*))
+{
+    node_t *temp = head;
+    
+    while (temp != NULL)
+    {
+        node_t *el = temp;
+        temp = temp->next;
+
+        free_data(el->data);
+        free(el);
+    }
+}
+
