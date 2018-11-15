@@ -6,7 +6,10 @@ int len(char *string)
         return LEN_ERROR;
 
     int n = 0;
-    while (string[n] != '\0') n++;
+
+    while (string[n] != '\0') 
+        n++;
+
     return n;
 }
 
