@@ -3,7 +3,7 @@
 node_t *find(node_t *head, const void *data, int (*comparator)(const void*, const void *))
 {
     node_t *temp = head;
-    
+
     while (temp != NULL)
     {
         if (comparator(temp->data, data) == 0)
@@ -85,7 +85,7 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
     if (head == NULL || element == NULL || comparator == NULL || *head == NULL)
         return;
 
-    if (comparator((*head)->data, element->data) >= 0)
+    if (comparator((*head)->data, element->data) > 0)
     {
         element->next = *head;
         *head = element;
@@ -110,7 +110,7 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
 void free_list(node_t *head, void (*free_data)(void*))
 {
     node_t *temp = head;
-    
+
     while (temp != NULL)
     {
         node_t *el = temp;
