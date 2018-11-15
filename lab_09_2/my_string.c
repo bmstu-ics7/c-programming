@@ -17,12 +17,9 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (lineptr == NULL || stream == NULL || n == NULL)
         return GETLINE_ERROR;
 
-    if (*n == 0)
-        *n = SIZE_BUF;
-
     ssize_t size = 0;
 
-    if (*lineptr == NULL)
+    if (*lineptr == NULL || *n == 0)
     {
         *n = SIZE_BUF;
         *lineptr = malloc(*n);
