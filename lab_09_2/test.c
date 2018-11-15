@@ -30,9 +30,7 @@ void test_getline_positive(void)
     file = fopen("test/1.in", "r");
     file_right = fopen("test/1.in", "r");
 
-    assert(my_getline(&res, &n, file), \
-           getline(&res_right, &n_right, file_right), \
-           "return values test #1 GETLINE");
+    assert(my_getline(&res, &n, file), getline(&res_right, &n_right, file_right), "return values test #1 GETLINE");
 
     assert_string(res, res_right, "result values test #1 GETLINE");
 
@@ -42,9 +40,7 @@ void test_getline_positive(void)
     file = fopen("test/2.in", "r");
     file_right = fopen("test/2.in", "r");
 
-    assert(my_getline(&res, &n, file), \
-           getline(&res_right, &n_right, file_right), \
-           "return values test #2 GETLINE");
+    assert(my_getline(&res, &n, file), getline(&res_right, &n_right, file_right), "return values test #2 GETLINE");
 
     assert_string(res, res_right, "result values test #2 GETLINE");
 
@@ -54,9 +50,7 @@ void test_getline_positive(void)
     file = fopen("test/only_enter.in", "r");
     file_right = fopen("test/only_enter.in", "r");
 
-    assert(my_getline(&res, &n, file), \
-           getline(&res_right, &n_right, file_right), \
-           "return values test only_enter GETLINE");
+    assert(my_getline(&res, &n, file), getline(&res_right, &n_right, file_right), "return values test only_enter GETLINE");
 
     assert_string(res, res_right, "result values test only_enter GETLINE");
 
@@ -79,9 +73,7 @@ void test_getline_negative(void)
     file = fopen("test/void.in", "r");
     file_right = fopen("test/void.in", "r");
 
-    assert(my_getline(&res, &n, file), \
-           getline(&res_right, &n_right, file_right), \
-           "return values negative test GETLINE");
+    assert(my_getline(&res, &n, file), getline(&res_right, &n_right, file_right), "return values negative test GETLINE");
 
     assert_string(res, res_right, "result values negative test GETLINE");
 
