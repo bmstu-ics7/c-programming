@@ -1,9 +1,9 @@
+#ifndef __MY_STRING_H
+#define __MY_STRING_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-
-#ifndef __MY_STRING_H
-#define __MY_STRING_H
 
 #define GETLINE_ERROR -1
 #define LEN_ERROR -2

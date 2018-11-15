@@ -7,7 +7,7 @@ int len(char *string)
 
     int n = 0;
 
-    while (string[n] != '\0') 
+    while (string[n] != '\0')
         n++;
 
     return n;
