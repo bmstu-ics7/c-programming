@@ -2,6 +2,9 @@
 
 int len(char *string)
 {
+    if (string == NULL)
+        return LEN_ERROR;
+
     int n = 0;
     while (string[n++] != '\0');
     return n - 1;

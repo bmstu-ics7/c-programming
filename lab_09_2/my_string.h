@@ -6,6 +6,7 @@
 #define __MY_STRING_H
 
 #define GETLINE_ERROR -1
+#define LEN_ERROR -2
 
 #define SIZE_BUF 128
 
