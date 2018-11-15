@@ -52,7 +52,9 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
     if (comparator == NULL)
         return NULL;
 
-    int count_sorted = 1;
+    if (head->next == NULL)
+        return head;
+
     int count_all = 0;
 
     for (node_t *temp = head; temp != NULL; temp = temp->next)
@@ -63,7 +65,7 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
         node_t *temp = head;
         node_t *prev_temp = NULL;
 
-        for (int j = 1; j <= count_sorted; j++)
+        for (int j = 0; j < i; j++)
         {
             prev_temp = temp;
             temp = temp->next;
@@ -73,7 +75,6 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
             prev_temp->next = temp->next;
 
         sorted_insert(&head, temp, comparator);
-        count_sorted++;
     }
 
     return head;
