@@ -125,10 +125,10 @@ void test_replace_negative(void)
 
 int test_len(void)
 {
-   test_len_positive();
-   test_len_negative();
+    test_len_positive();
+    test_len_negative();
 
-   return print_errors("len test");
+    return print_errors("len test");
 }
 
 int test_getline(void)
