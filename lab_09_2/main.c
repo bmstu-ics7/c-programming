@@ -5,7 +5,7 @@
 #include "my_string.h"
 
 #define SUCCESS 0
-#define ARG_ERROR -2
+#define ARG_ERROR -3
 
 #define COUNT_ARG 7
 
