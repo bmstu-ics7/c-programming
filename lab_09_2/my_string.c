@@ -6,13 +6,13 @@ int len(char *string)
         return LEN_ERROR;
 
     int n = 0;
-    while (string[n++] != '\0');
-    return n - 1;
+    while (string[n] != '\0') n++;
+    return n;
 }
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    char buffer[SIZE_BUF];
+    char buffer[SIZE_BUF] = { '0' };
 
     if (lineptr == NULL || stream == NULL || n == NULL)
         return GETLINE_ERROR;
@@ -34,7 +34,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 
         if (*n < size)
         {
-            *n = size;
+            *n *= 2;
             *lineptr = realloc(*lineptr, *n);
         }
 
@@ -59,7 +59,6 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
         return GETLINE_ERROR;
     }
 
-    *n -= 1;
     (*lineptr)[size] = '\0';
 
     if (size == 0)
