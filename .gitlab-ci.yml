@@ -8,3 +8,13 @@ test:
     paths: [report.txt.enc]
     when: always
 
+rk3:
+  image: gcc
+  stage: build
+  only: 
+    - RK_31
+  script: 
+    - cd RK_31_10 || cd RK_31_15
+    - pwd
+    - make build
+    - make run
