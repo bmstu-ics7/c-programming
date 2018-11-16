@@ -26,7 +26,7 @@ void test_getline_positive(void)
     char *res_right = NULL;
     size_t n_right = 0;
     FILE *file_right = NULL;
-        
+
     file = fopen("test/1.in", "r");
     file_right = fopen("test/1.in", "r");
 
@@ -36,7 +36,7 @@ void test_getline_positive(void)
 
     fclose(file);
     fclose(file_right);
-    
+
     file = fopen("test/2.in", "r");
     file_right = fopen("test/2.in", "r");
 
@@ -74,8 +74,6 @@ void test_getline_negative(void)
     file_right = fopen("test/void.in", "r");
 
     assert(my_getline(&res, &n, file), getline(&res_right, &n_right, file_right), "return values negative test GETLINE");
-
-    assert_string(res, res_right, "result values negative test GETLINE");
 
     fclose(file);
     fclose(file_right);
@@ -143,7 +141,7 @@ int test_replace(void)
 {
     test_replace_positive();
     test_replace_negative();
-    
+
     return print_errors("replase test");
 }
 
