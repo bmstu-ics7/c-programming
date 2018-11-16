@@ -13,8 +13,8 @@ rk3:
   stage: build
   only: 
     - RK_31
+    - rk_31
   script: 
-    - cd RK_31_10 || cd RK_31_15
-    - pwd
-    - make build
+    - cd `ls -dtr RK_31* | head -1` || cd `ls -dtr rk_31* | head -1`
+    - make build || make
     - make run
