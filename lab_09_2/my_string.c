@@ -25,7 +25,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
     if (*lineptr == NULL || *n == 0)
     {
         *n = SIZE_BUF;
-        *lineptr = malloc(*n);
+        *lineptr = calloc(*n, sizeof(char));
     }
 
     while (fgets(buffer, SIZE_BUF, stream) != NULL)
@@ -70,8 +70,9 @@ char *str_replace(const char *source, const char *search, const char *replace)
         return NULL;
 
     int size = len((char*)source);
-    char *result = malloc(size);
+    char *result = NULL;
     int n = size;
+    result = calloc(size, sizeof(char));
 
     if (result == NULL)
         return NULL;
