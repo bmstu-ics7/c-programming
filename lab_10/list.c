@@ -55,35 +55,29 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
     if (head->next == NULL)
         return head;
 
-    int count_all = 0;
+    node_t *sorted = NULL;
 
-    for (node_t *temp = head; temp != NULL; temp = temp->next)
-        count_all++;
-
-    for (int i = 1; i < count_all; i++)
+    for (node_t *temp = head; temp != NULL;)
     {
-        node_t *temp = head;
-        node_t *prev_temp = NULL;
-
-        for (int j = 0; j < i; j++)
-        {
-            prev_temp = temp;
-            temp = temp->next;
-        }
-
-        if (prev_temp)
-            prev_temp->next = temp->next;
-
-        sorted_insert(&head, temp, comparator);
+        node_t *element = temp;
+        temp = temp->next;
+        sorted_insert(&sorted, element, comparator);
     }
 
-    return head;
+    return sorted;
 }
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
-    if (head == NULL || element == NULL || comparator == NULL || *head == NULL)
+    if (head == NULL || element == NULL || comparator == NULL)
         return;
+
+    if (*head == NULL)
+    {
+        *head = element;
+        element->next = NULL;
+        return;
+    }
 
     if (comparator((*head)->data, element->data) > 0)
     {
