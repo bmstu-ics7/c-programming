@@ -22,13 +22,9 @@ int main(int argc, char **argv)
     FILE *file = fopen(argv[1], "r");
 
     int **matrix, n, m;
-/*
-    if (input_matrix(&matrix, &n, &m, file) != SUCCESS)
-    {
-        free_matrix(matrix, n);
-        return INPUT_ERROR;
-    }
-*/
+
+    input_matrix(&matrix, &n, &m, file);
+
     fclose(file);
 
     file = fopen("result.out", "w");
