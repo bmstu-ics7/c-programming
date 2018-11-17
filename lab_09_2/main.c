@@ -79,6 +79,8 @@ int replace_in_file(char **argv)
 
         free_string(result);
         free_string(source);
+
+        n = 0;
     }
 
     if (result == NULL)
