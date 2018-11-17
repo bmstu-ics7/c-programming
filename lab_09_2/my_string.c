@@ -165,7 +165,8 @@ char *str_replace(const char *source, const char *search, const char *replace)
  *
  * @param str [in]
  */
- void free_string(char *str)
+
+void free_string(char *str)
 {
     if (str)
         free(str);
