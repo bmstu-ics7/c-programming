@@ -77,6 +77,7 @@ void test_getline_negative(void)
 
     fclose(file);
     fclose(file_right);
+    free_string(res);
     free_string(res_right);
 }
 

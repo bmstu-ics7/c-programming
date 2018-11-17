@@ -43,16 +43,9 @@ int all_fclose(void)
     return SUCCESS;
 }
 
-void all_free(void)
-{
-    free_string(source);
-    free_string(result);
-}
-
 int return_error(int error)
 {
     all_fclose();
-    all_free();
 
     switch (error)
     {

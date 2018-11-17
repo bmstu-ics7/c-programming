@@ -50,11 +50,12 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
             break;
     }
 
-    if (lineptr == NULL)
+    if (*lineptr == NULL)
         return GETLINE_ERROR;
+
     if (size == 0)
     {
-        free_string(*lineptr);
+        //free_string(*lineptr);
         return GETLINE_ERROR;
     }
 
