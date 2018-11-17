@@ -15,6 +15,14 @@ FILE *file_out = NULL;
 char *source = NULL;
 char *result = NULL;
 
+/*
+ * Открытие всех файлов
+ *
+ * @param argv [in]
+ *
+ * @return Возвращает errno в случае ошибки и SUCCESS при успехе
+ */
+
 int all_fopen(char **argv)
 {
     file_in = NULL;
@@ -29,6 +37,14 @@ int all_fopen(char **argv)
     return SUCCESS;
 }
 
+/*
+ * Закрытие всех файлов
+ *
+ * @param argv [in]
+ *
+ * @return Возвращает errno в случае ошибки и SUCCESS при успехе
+ */
+
 int all_fclose(void)
 {
     if (file_in != NULL)
@@ -42,6 +58,14 @@ int all_fclose(void)
 
     return SUCCESS;
 }
+
+/*
+ * Выводит информацию об ошибки и возвращает ее
+ *
+ * @param error [in]
+ *
+ * @return Код ошибки 
+ */
 
 int return_error(int error)
 {
@@ -62,6 +86,14 @@ int return_error(int error)
             return errno;
     }
 }
+
+/*
+ * Заменяет подстроки и выводит в файл
+ *
+ * @param argv [in]
+ *
+ * @return Возвращает GETLINE_ERROR в случае ошибки и SUCCESS при успехе
+ */
 
 int replace_in_file(char **argv)
 {

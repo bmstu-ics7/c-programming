@@ -1,5 +1,13 @@
 #include "my_string.h"
 
+/* 
+ * Вычисляет длину строки
+ *
+ * @param string [in]
+ *
+ * @return Длина строки или LEN_ERROR в случае NULL
+ */
+
 int len(char *string)
 {
     if (string == NULL)
@@ -12,6 +20,16 @@ int len(char *string)
 
     return n;
 }
+
+/* 
+ * Считывает строку из файла
+ *
+ * @param lineptr [out]
+ * @param n [out]
+ * @param stream [in]
+ *
+ * @return Количество считанных байт или GETLINE_ERROR в случае ошибки
+ */
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
@@ -54,15 +72,22 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
         return GETLINE_ERROR;
 
     if (size == 0)
-    {
-        //free_string(*lineptr);
         return GETLINE_ERROR;
-    }
 
     (*lineptr)[size] = '\0';
 
     return size;
 }
+
+/* 
+ * Заменят подсткроки в строке
+ *
+ * @param source [in]
+ * @param search [in]
+ * @param replace [in]
+ *
+ * @return Новая строка
+ */
 
 char *str_replace(const char *source, const char *search, const char *replace)
 {
@@ -135,7 +160,12 @@ char *str_replace(const char *source, const char *search, const char *replace)
     return result;
 }
 
-void free_string(char *str)
+/*
+ * Очищает память с проверкой
+ *
+ * @param str [in]
+ */
+ void free_string(char *str)
 {
     if (str)
         free(str);
