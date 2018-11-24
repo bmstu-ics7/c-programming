@@ -27,11 +27,7 @@ int main(int argc, char **argv)
 
     fclose(file);
 
-    file = fopen("result.out", "w");
-
-    work(matrix, n, m, file);
-
-    fclose(file);
+    work(matrix, n, m, stdout);
     
     free_matrix(matrix, n);
 
