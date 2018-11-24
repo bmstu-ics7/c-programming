@@ -45,14 +45,14 @@ void print_matrix(int **matrix, const int n, const int m, FILE *stream)
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            if (matrix[i][j] == 0)
+            if (matrix[i][j] != 0)
                 count++; 
 
     fprintf(stream, "%d %d %d\n", n, m, count);
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            if (matrix[i][j] == 0)
+            if (matrix[i][j] != 0)
                 fprintf(stream, "%d %d %d\n", i + 1, j + 1, matrix[i][j]);
 }
 
