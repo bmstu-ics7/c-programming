@@ -44,6 +44,29 @@ void *pop_back(node_t **head)
     return data;
 }
 
+void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*))
+{
+    if (head == NULL || comparator == NULL || *head == NULL)
+        return;
+
+    node_t *temp = (*head)->next;
+    node_t *prev = *head;
+
+    for (; temp != NULL; temp = temp->next)
+    {
+        if (comparator(temp->data, prev->data) == 0)
+        {
+            prev->next = temp->next;
+            free(temp);
+            temp = prev;
+        }
+        else
+        {
+            prev = temp;
+        }
+    }
+}
+
 node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
 {
     if (head == NULL)

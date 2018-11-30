@@ -16,6 +16,8 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void*, cons
 
 void*pop_back(node_t **head);
 
+void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*));
+
 node_t *sort(node_t *head, int (*comparator)(const void *, const void *));
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *));
