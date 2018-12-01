@@ -28,10 +28,13 @@ char *my_strpbrk(const char *string1, const char *string2)
 {
     int distribution[256] = { 0 };
 
-    for (int i = 0; i < len((char*)string2); i++)
+    int len1 = len((char*)string1);
+    int len2 = len((char*)string2);
+
+    for (int i = 0; i < len2; i++)
         distribution[(int)string2[i]] = 1;
 
-    for (int i = 0; i < len((char*)string1); i++)
+    for (int i = 0; i < len1; i++)
         if (distribution[(int)string1[i]])
             return (char*)string1 + i;
 
