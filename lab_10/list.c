@@ -52,6 +52,13 @@ void insert(node_t **head, node_t *elem, node_t *before)
     node_t *temp = *head;
     node_t *prev = *head;
 
+    if (before == *head)
+    {
+        elem->next = *head;
+        *head = elem;
+        return;
+    }
+
     while (temp != NULL)
     {
         if (temp == before)
@@ -66,6 +73,7 @@ void insert(node_t **head, node_t *elem, node_t *before)
     }
 
     if (*head == NULL)
+    {
         if (before == NULL)
         {
             *head = elem;
@@ -74,6 +82,7 @@ void insert(node_t **head, node_t *elem, node_t *before)
         }
         else
             return;
+    }
 
     if (before == NULL)
     {
