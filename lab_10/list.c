@@ -65,6 +65,16 @@ void insert(node_t **head, node_t *elem, node_t *before)
         temp = temp->next;
     }
 
+    if (*head == NULL)
+        if (before == NULL)
+        {
+            *head = elem;
+            elem->next = before;
+            return;
+        }
+        else
+            return;
+
     if (before == NULL)
     {
         prev->next = elem;
