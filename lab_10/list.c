@@ -44,6 +44,34 @@ void *pop_back(node_t **head)
     return data;
 }
 
+void insert(node_t **head, node_t *elem, node_t *before)
+{
+    if (head == NULL || elem == NULL)
+        return;
+
+    node_t *temp = *head;
+    node_t *prev = *head;
+
+    while (temp != NULL)
+    {
+        if (temp == before)
+        {
+            prev->next = elem;
+            elem->next = before;
+            return;
+        }
+
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (before == NULL)
+    {
+        prev->next = elem;
+        elem->next = before;
+    }
+}
+
 void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*))
 {
     if (head == NULL || comparator == NULL || *head == NULL)

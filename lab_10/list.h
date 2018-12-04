@@ -6,7 +6,7 @@
 
 typedef struct node node_t;
 
-struct node 
+struct node
 {
     void *data;
     node_t *next;
@@ -14,7 +14,9 @@ struct node
 
 node_t *find(node_t *head, const void *data, int (*comparator)(const void*, const void *));
 
-void*pop_back(node_t **head);
+void *pop_back(node_t **head);
+
+void insert(node_t **head, node_t *elem, node_t *before);
 
 void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*));
 
