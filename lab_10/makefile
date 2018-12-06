@@ -13,7 +13,7 @@ endif
 %.o: %.c %.h
 	$(CC) $(KEYS) -c $^
 
-app.exe: list.o main.o
+app.exe: list.o trie.o main.o
 	$(CC) -o app.exe $^
 
 test.exe: list.o test.o
