@@ -45,6 +45,11 @@ void *trie_get(my_trie *trie, char *str_key)
     }
 }
 
+int comparator(const void *data1, const void *data2)
+{
+    return ((my_trie*)data1)->key - ((my_trie*)data2)->key;
+}
+
 void trie_set(my_trie *trie, char *str_key, void *data)
 {
     for (int i = 0; ; i++)
@@ -93,6 +98,7 @@ void trie_set(my_trie *trie, char *str_key, void *data)
             node_t *node = malloc(sizeof(node_t));
             node->data = tmp;
             insert(&(trie->leavs), node, trie->leavs);
+            trie->leavs = sort(trie->leavs, comparator);
             trie = tmp;
         }
     }
