@@ -229,3 +229,15 @@ void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE])
     }
 }
 
+void trie_free(my_trie *trie, void (*free_data)(void*))
+{
+    if (trie == NULL)
+        return;
+
+    for (node_t *temp = trie->leavs; temp != NULL; temp = temp->next)
+        trie_free((my_trie*)temp->data, free_data);
+
+    free_data(trie->data);
+    free(trie);
+}
+
