@@ -1,5 +1,15 @@
 #include "list.h"
 
+/*
+ * Ищет элемент в списке по данным
+ *
+ * @param head [in]
+ * @param data[in]
+ * @param comparator [in]
+ *
+ * @return Найденный элемент или NULL если ткого нет
+ */
+
 node_t *find(node_t *head, const void *data, int (*comparator)(const void*, const void *))
 {
     node_t *temp = head;
@@ -14,6 +24,14 @@ node_t *find(node_t *head, const void *data, int (*comparator)(const void*, cons
 
     return temp;
 }
+
+/*
+ * Удаляет последний элемент списка
+ *
+ * @param head [out]
+ *
+ * @return Возвращает данные последнего элемента
+ */
 
 void *pop_back(node_t **head)
 {
@@ -43,6 +61,14 @@ void *pop_back(node_t **head)
 
     return data;
 }
+
+/*
+ * Вставляет элемент в список перед данным
+ *
+ * @param head [out]
+ * @param elem [in]
+ * @param befor [in]
+ */
 
 void insert(node_t **head, node_t *elem, node_t *before)
 {
@@ -91,6 +117,13 @@ void insert(node_t **head, node_t *elem, node_t *before)
     }
 }
 
+/*
+ * Удаляет дубликаты в отсортированном списке
+ *
+ * @param head [out]
+ * @param comparator [in]
+ */
+
 void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*))
 {
     if (head == NULL || comparator == NULL || *head == NULL)
@@ -114,6 +147,15 @@ void remove_duplicates(node_t **head, int (*comparator)(const void*, const void*
     }
 }
 
+/*
+ * Сортирует список алгоритмом вставок
+ *
+ * @param head [in]
+ * @param comparator [in]
+ *
+ * @return Отсортированный список
+ */
+
 node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
 {
     if (head == NULL)
@@ -136,6 +178,14 @@ node_t *sort(node_t *head, int (*comparator)(const void *, const void *))
 
     return sorted;
 }
+
+/*
+ * Вставляет элемент в отсортированнй список
+ *
+ * @param head [out]
+ * @param element [in]
+ * @param comparator [in]
+ */
 
 void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void *, const void *))
 {
@@ -170,6 +220,13 @@ void sorted_insert(node_t **head, node_t *element, int (*comparator)(const void 
     element->next = NULL;
     return;
 }
+
+/*
+ * Очищает лист
+ *
+ * @param head [in]
+ * @param free_data [in]
+ */
 
 void free_list(node_t *head, void (*free_data)(void*))
 {

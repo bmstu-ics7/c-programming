@@ -1,5 +1,11 @@
 #include "trie.h"
 
+/*
+ * Создает префоксное дерево
+ *
+ * @return пустое префиксное дерево
+ */
+
 my_trie *trie_create()
 {
     my_trie *trie = malloc(sizeof(my_trie));
@@ -10,6 +16,13 @@ my_trie *trie_create()
 
     return trie;
 }
+
+/*
+ * Берет значение из префиксного дерева по ключу
+ *
+ * @param trie [in]
+ * @param str_key [in]
+ */
 
 void *trie_get(my_trie *trie, char *str_key)
 {
@@ -45,10 +58,27 @@ void *trie_get(my_trie *trie, char *str_key)
     }
 }
 
+/*
+ * Функция компарации для сортировки списка узлов по алфавиту
+ *
+ * @param data1 [in]
+ * @param data2 [in]
+ *
+ * @return возвращает разницу между кодами символов
+ */
+
 int comparator(const void *data1, const void *data2)
 {
     return ((my_trie*)data1)->key - ((my_trie*)data2)->key;
 }
+
+/*
+ * Устанавливает значение ключу (в случае нового создает ключ)
+ *
+ * @param trie [out]
+ * @param str_key [in]
+ * @param data [in]
+ */
 
 void trie_set(my_trie *trie, char *str_key, void *data)
 {
@@ -104,6 +134,13 @@ void trie_set(my_trie *trie, char *str_key, void *data)
     }
 }
 
+/*
+ * Удаляет значение из ключа и делает ключ неактивным
+ *
+ * @param trie [out]
+ * @param str_key [in]
+ */
+
 void trie_remove(my_trie *trie, char *str_key)
 {
     for (int i = 0; ; i++)
@@ -143,11 +180,29 @@ void trie_remove(my_trie *trie, char *str_key)
 
 void trie_search_keys_recursive(my_trie *trie, char *str, int index, char *now, int found, int len);
 
+/*
+ * Ищет и выводит все ключи с данной подстрокой, вызывая рекурсивный алгоритм поиска
+ *
+ * @param trie [in]
+ * @param str [in]
+ */
+
 void trie_search_keys(my_trie *trie, char *str)
 {
     char now[SIZE];
     trie_search_keys_recursive(trie, str, 0, now, 0, 0);
 }
+
+/*
+ * Рекурсивный алгоритм поиска
+ *
+ * @param trie [in]
+ * @param str [in]
+ * @param index [in]
+ * @param now [in]
+ * @param found [in]
+ * @param len [in]
+ */
 
 void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SIZE], int found, int len)
 {
@@ -176,11 +231,26 @@ void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SI
 
 void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE]);
 
+/*
+ * Выводит дерево ключей в консоль
+ *
+ * @param trie[in]
+ */
+
 void trie_print(my_trie *trie)
 {
     int probels[SIZE];
     trie_print_recursive(trie, 0, 0, probels);
 }
+
+/*
+ * Рекурсивный алгоритм вывода
+ *
+ * @param trie [in]
+ * @param level [in]
+ * @param end [in]
+ * @param probels [in]
+ */
 
 void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE])
 {
@@ -228,6 +298,13 @@ void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE])
         }
     }
 }
+
+/*
+ * Очищает дерево
+ *
+ * @param trie [in]
+ * @param free_data [in]
+ */
 
 void trie_free(my_trie *trie, void (*free_data)(void*))
 {
