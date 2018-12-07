@@ -6,6 +6,11 @@
 #define TRUE 1
 #define FALSE 0
 
+#define GREEN   "\x1b[32m"
+#define WHITE   "\x1b[0m"
+
+#define SIZE 128
+
 typedef struct my_trie my_trie;
 
 struct my_trie
@@ -23,5 +28,9 @@ void *trie_get(my_trie *trie, char *str_key);
 void trie_set(my_trie *trie, char *str_key, void *data);
 
 void trie_remove(my_trie *trie, char *str_key);
+
+void trie_search_keys(my_trie *trie, char *str);
+
+void trie_print(my_trie *trie);
 
 #endif
