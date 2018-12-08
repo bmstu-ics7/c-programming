@@ -103,7 +103,7 @@ void trie_set(my_trie *trie, char *str_key, void *data)
             tmp->leavs = NULL;
             node_t *node = malloc(sizeof(node_t));
             node->data = tmp;
-            insert(&(trie->leavs), node, trie->leavs);
+            sorted_insert(&(trie->leavs), node, comparator);
             trie = tmp;
         }
 
@@ -127,8 +127,7 @@ void trie_set(my_trie *trie, char *str_key, void *data)
             tmp->leavs = NULL;
             node_t *node = malloc(sizeof(node_t));
             node->data = tmp;
-            insert(&(trie->leavs), node, trie->leavs);
-            trie->leavs = sort(trie->leavs, comparator);
+            sorted_insert(&(trie->leavs), node, comparator);
             trie = tmp;
         }
     }
