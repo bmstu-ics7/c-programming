@@ -7,14 +7,3 @@ test:
   artifacts:
     paths: [report.txt.enc]
     when: always
-
-rk3:
-  image: gcc
-  stage: build
-  only: 
-    - RK_31
-    - rk_31
-  script: 
-    - cd `ls -dtr RK_31* | head -1` || cd `ls -dtr rk_31* | head -1`
-    - make build || make
-    - make run
