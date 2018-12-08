@@ -2,6 +2,8 @@ KEYS := -std=c99 -Wall -Werror
 CC := gcc
 RM := rm
 
+GRAPH := 500 10
+
 ifeq ($(mode), debug)
     KEYS += -g3
 endif
@@ -13,11 +15,14 @@ endif
 %.o: %.c %.h
 	$(CC) $(KEYS) -c $^
 
-app.exe: work_memory.o file_matrix.o sum_matrix.o deg_matrix.o operation.o main.o 
-	$(CC) -o app.exe $^
-
-test.exe: assert.o test.o
+test.exe: assert.o my_strpbrk.o test.o
 	$(CC) -o test.exe $^
+
+graphtest: tick.o my_strpbrk.o graph.o
+	$(CC) -o graphtest.exe $^
+	./graphtest.exe $(GRAPH)
+	python3 graph.py
 
 clean:
 	$(RM) *.o *.exe *.gch
+

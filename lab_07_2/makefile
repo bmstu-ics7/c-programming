@@ -13,11 +13,11 @@ endif
 %.o: %.c %.h
 	$(CC) $(KEYS) -c $^
 
-app.exe: work_memory.o file_matrix.o sum_matrix.o deg_matrix.o operation.o main.o 
+app.exe: input_array.o key.o mysort.o print_array.o main.o
 	$(CC) -o app.exe $^
-
-test.exe: assert.o test.o
-	$(CC) -o test.exe $^
 
 clean:
 	$(RM) *.o *.exe *.gch
+
+test.exe: assert.o key.o mysort.o test.o
+	$(CC) -o test.exe $^

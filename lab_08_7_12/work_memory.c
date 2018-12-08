@@ -22,7 +22,11 @@ double **allocate_matrix(int n, int m)
     data = malloc(n * m * sizeof(data[0]));
     
     if (data == NULL)
+    {
+        free(pointers);
+
         return NULL;
+    }
     
     for (int i = 0; i < n; i++)
         pointers[i] = data + i * m;

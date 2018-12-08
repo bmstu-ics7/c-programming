@@ -148,15 +148,87 @@ int assert_matrix(double **expected, double **recieved, const int n, const int m
 }
 
 /*
+ * Сравнивает две строки
+ *
+ * @param expected [in]
+ * @param recieved [in]
+ * @param test_name [in]
+ *
+ * @return возвращает SUCCESS в случае равных оидаемого
+ * и полученного результатов и WRONG иначе
+*/
+
+int assert_string(char const *const expected, char const *const recieved, const char *const test_name)
+{
+    if (expected == NULL && expected == NULL)
+    {
+        printf(GREEN "%s success\n\n", test_name);
+        printf(WHITE "");
+        return SUCCESS;
+    }
+
+    int error = 0;
+
+    for (int i = 0; expected[i] != '\0' && recieved[i] != '\0'; i++)
+    {
+        if (expected[i] != recieved[i])
+        {
+            error = 1;
+            break;
+        }
+
+        if (expected[i] == '\0' && recieved[i] != '\0')
+        {
+            error = 1;
+            break;
+        }
+
+        if (expected[i] != '\0' && recieved[i] == '\0')
+        {
+            error = 1;
+            break;
+        }
+
+        if (expected[i] == '\0' && recieved[i] == '\0')
+            break;
+    }
+
+    if (error == 0)
+    {
+        printf(GREEN "%s success\n\n", test_name);
+        printf(WHITE "");
+        return SUCCESS;
+    }
+    else
+    {
+        err_cnt++;
+
+        printf(RED "%s failed:\n" 
+                WHITE "expected: %s, recieved: %s\n", test_name, expected, recieved);
+        
+        printf(WHITE "");
+        return WRONG;
+    }
+}
+
+/*
  * Выводит результат тестирования
  *  
  * @param test_name [in]
 */
 
-void print_errors(const char *const test_name)
+int print_errors(const char *const test_name)
 {
     printf(WHITE "%d %s %s\n", err_cnt, err_cnt ? RED "FAILED" : GREEN "OK", test_name);
     printf(WHITE "\n");
+
+    if (err_cnt)
+    {
+        err_cnt = 0;
+        return WRONG;
+    }
+
     err_cnt = 0;
+    return SUCCESS;
 }
 

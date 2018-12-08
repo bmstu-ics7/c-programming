@@ -16,7 +16,11 @@ endif
 app.exe: list.o trie.o main.o
 	$(CC) -o app.exe $^
 
+<<<<<<< HEAD:lab_10/makefile
 test.exe: list.o test.o
+=======
+test.exe: assert.o my_string.o test.o
+>>>>>>> origin/master:lab_09_2/makefile
 	$(CC) -o test.exe $^
 
 clean:
