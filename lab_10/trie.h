@@ -29,7 +29,7 @@ void trie_set(my_trie *trie, char *str_key, void *data);
 
 void trie_remove(my_trie *trie, char *str_key);
 
-void trie_search_keys(my_trie *trie, char *str);
+void trie_search_keys(FILE *stream, my_trie *trie, char *str);
 
 void trie_print(my_trie *trie);
 

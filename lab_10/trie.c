@@ -177,7 +177,7 @@ void trie_remove(my_trie *trie, char *str_key)
     }
 }
 
-void trie_search_keys_recursive(my_trie *trie, char *str, int index, char *now, int found, int len);
+void trie_search_keys_recursive(my_trie *trie, char *str, int index, char *now, int found, int len, FILE *stream);
 
 /*
  * Ищет и выводит все ключи с данной подстрокой, вызывая рекурсивный алгоритм поиска
@@ -186,10 +186,10 @@ void trie_search_keys_recursive(my_trie *trie, char *str, int index, char *now, 
  * @param str [in]
  */
 
-void trie_search_keys(my_trie *trie, char *str)
+void trie_search_keys(FILE *stream, my_trie *trie, char *str)
 {
     char now[SIZE];
-    trie_search_keys_recursive(trie, str, 0, now, 0, 0);
+    trie_search_keys_recursive(trie, str, 0, now, 0, 0, stream);
 }
 
 /*
@@ -203,7 +203,7 @@ void trie_search_keys(my_trie *trie, char *str)
  * @param len [in]
  */
 
-void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SIZE], int found, int len)
+void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SIZE], int found, int len, FILE *stream)
 {
     if (trie == NULL)
         return;
@@ -222,10 +222,10 @@ void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SI
     now[len] = '\0';
 
     if (found && trie->is_real)
-        printf("%s\n", now);
+        fprintf(stream, "%s\n", now);
 
     for (node_t *temp = trie->leavs; temp != NULL; temp = temp->next)
-        trie_search_keys_recursive((my_trie*)temp->data, str, index, now, found, len);
+        trie_search_keys_recursive((my_trie*)temp->data, str, index, now, found, len, stream);
 }
 
 void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE]);

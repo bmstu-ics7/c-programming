@@ -36,7 +36,10 @@ int main(void)
     printf("%d\n", trie_get(trie, "kek") == NULL ? -1 : *(int*)trie_get(trie, "kek"));
 
     printf("\n");
-    trie_search_keys(trie, "k");
+    trie_search_keys(stdout, trie, "k");
+
+    printf("\n");
+    trie_search_keys(stdout, trie, "o");
 
     printf("\n");
     trie_print(trie);
