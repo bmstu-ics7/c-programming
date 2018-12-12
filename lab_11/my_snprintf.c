@@ -30,7 +30,6 @@ char *int_to_str(int n)
 
     for (int i = size - 1; n; i--)
     {
-        printf("%d\n", n);
         str[i] = (char)(n % 10 + 48);
         n /= 10;
     }
@@ -43,12 +42,10 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
     va_list args;
     va_start(args, format);
 
-    int format_len = len((char*)format);
-
     int n = SIZE;
     char *out = malloc(n);
 
-    for (int i = 0, j = 0; i < format_len; i++)
+    for (int i = 0, j = 0; i < size; i++)
     {
         if (format[i] == '%')
         {
