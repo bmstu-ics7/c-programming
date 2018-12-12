@@ -20,10 +20,10 @@ char *int_to_str(int n)
 
     char *str;
     if (n >= 0)
-        str = malloc(size);
+        str = malloc(size + 1);
     else
     {
-        str = malloc(++size);
+        str = malloc(++size + 1);
         str[0] = '-';
         n *= -1;
     }
@@ -33,6 +33,8 @@ char *int_to_str(int n)
         str[i] = (char)(n % 10 + 48);
         n /= 10;
     }
+
+    str[size] = '\0';
 
     return str;
 }
@@ -46,6 +48,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
     int n = SIZE;
     char *out = malloc(n);
+    int result_n = 0;
 
     for (int i = 0, j = 0; i < len_format; i++)
     {
@@ -67,7 +70,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
                         if (j == n)
                         {
-                            out = realloc(out, n * 2);
+                            out = realloc(out, n * 2 + 1);
                             n *= 2;
                         }
                     }
@@ -84,7 +87,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
                     if (j == n)
                     {
-                        out = realloc(out, n * 2);
+                        out = realloc(out, n * 2 + 1);
                         n *= 2;
                     }
                 }
@@ -101,7 +104,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
                         if (j == n)
                         {
-                            out = realloc(out, n * 2);
+                            out = realloc(out, n * 2 + 1);
                             n *= 2;
                         }
                     }
@@ -118,17 +121,17 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
             out = realloc(out, n * 2);
             n *= 2;
         }
+
+        result_n = j;
     }
 
     va_end(args);
 
+    out[result_n] = '\0';
     int len_result = len(out);
 
     if (len_result > size)
-    {
         out[size] = '\0';
-        len_result = size;
-    }
 
     if (str == NULL)
     {
