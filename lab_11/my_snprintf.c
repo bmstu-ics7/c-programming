@@ -181,7 +181,6 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
                     free(numb_str);
                 }
-
             }
             else
             {
@@ -236,7 +235,6 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
                     free(numb_str);
                 }
-
             }
         }
         else
