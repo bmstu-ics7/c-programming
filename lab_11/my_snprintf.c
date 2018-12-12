@@ -121,10 +121,15 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
         }
     }
 
+    va_end(args);
+
     int len_result = len(out);
 
     if (str == NULL)
+    {
+        free(out);
         return len_result;
+    }
 
     for (int i = 0; i < len_result; i++)
         str[i] = out[i];
