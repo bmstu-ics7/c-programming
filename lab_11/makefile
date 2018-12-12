@@ -13,7 +13,7 @@ endif
 %.o: %.c %.h
 	$(CC) $(KEYS) -c $^
 
-test.exe: my_snprintf.o
+test.exe: my_snprintf.o test.o
 	$(CC) -o $@ $^
 
 clean:

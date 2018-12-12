@@ -111,8 +111,8 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
                 }
             }
         }
-
-        out[j++] = format[i];
+        else
+            out[j++] = format[i];
 
         if (j == n)
         {
