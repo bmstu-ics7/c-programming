@@ -42,10 +42,12 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
     va_list args;
     va_start(args, format);
 
+    int len_format = len((char*)format);
+
     int n = SIZE;
     char *out = malloc(n);
 
-    for (int i = 0, j = 0; i < size; i++)
+    for (int i = 0, j = 0; i < len_format; i++)
     {
         if (format[i] == '%')
         {
@@ -121,6 +123,12 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
     va_end(args);
 
     int len_result = len(out);
+
+    if (len_result > size)
+    {
+        out[size] = '\0';
+        len_result = size;
+    }
 
     if (str == NULL)
     {
