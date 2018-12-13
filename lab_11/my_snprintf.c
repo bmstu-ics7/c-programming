@@ -271,14 +271,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
         size--;
 
     if (len_result > size)
-    {
         out[size] = '\0';
-        str[size] = '\0';
-    }
-    else
-    {
-        str[len_result] = '\0';
-    }
 
     if (str == NULL)
     {
@@ -286,8 +279,8 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
         return len_result;
     }
 
-    for (int i = 0; out[i] != '\0'; i++)
-        str[i] = out[i];
+    for (int i = -1; i < 0 || out[i] != '\0'; i++)
+        str[i + 1] = out[i + 1];
 
     free(out);
     return len_result;
