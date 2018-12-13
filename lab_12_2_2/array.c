@@ -11,6 +11,7 @@ void fibb_arr(int *array, const int size)
         return;
     }
 
+    array[0] = 1;
     array[1] = 1;
 
     for (int i = 2; i < size; i++)
