@@ -42,7 +42,6 @@ void test3(void)
     char *str = malloc(100);
     char *my_str = malloc(100);
 
-    char a = '$';
     short int b = 12;
     short int c = 33;
 
@@ -87,6 +86,5 @@ int main(void)
         return WRONG;
 
     return SUCCESS;
-    
 }
 
