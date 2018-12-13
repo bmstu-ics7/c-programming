@@ -47,3 +47,10 @@ void cp_no_dublicates(int **new_array, const int *const cp_array, int *new_size,
 
     free(cp);
 }
+
+void print_array(const int *const array, const int size)
+{
+    for (int i = 0; i < size; i++)
+        printf("%d ", array[i]);
+    printf("\n");
+}
