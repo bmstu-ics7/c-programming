@@ -1,6 +1,7 @@
 KEYS := -std=c99 -Wall -Werror
 CC := gcc
 RM := rm
+DKEYS := -L. -larr -o
 
 ifeq ($(mode), debug)
     KEYS += -g3
@@ -17,7 +18,13 @@ lib%.a: %.o
 	ar rc $@ $^
 	ranlib $@
 
-test.exe: assert.o liblab_07.a test.o
+%.dll: %.o
+	$(CC) -shared $^ -o $@
+
+static_test.exe: assert.o liblab_07.a test.o
+	$(CC) -o $@ $^
+
+dynamic_test.exe: assert.o lab_07.dll test.o
 	$(CC) -o $@ $^
 
 clean:
