@@ -31,7 +31,7 @@ void test2(void)
 
     assert(snprintf(str, 0, "asd %c %o %o %x %x", a, b, c, b, c), my_snprintf(my_str, 0, "asd %c %o %o %x %x", a, b, c, b, c), "test2 return value");
 
-    assert_string(str, my_str, "test2 string");
+    assert_string("", my_str, "test2 string");
 
     free(str);
     free(my_str);
