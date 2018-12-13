@@ -18,12 +18,11 @@ void fibb_arr(int *array, const int size)
         array[i] = array[i - 1] + array[i - 2];
 }
 
-void cp_no_dublicates(int **new_array, const int *const cp_array, int *new_size, const int cp_size)
+void cp_no_dublicates(int *new_array, const int *const cp_array, int *new_size, const int cp_size)
 {
     if (cp_array == NULL || cp_size == 0)
         return;
 
-    int *cp = malloc(cp_size * sizeof(int));
     *new_size = 0;
 
     for (int i = 0; i < cp_size; i++)
@@ -31,7 +30,7 @@ void cp_no_dublicates(int **new_array, const int *const cp_array, int *new_size,
         int was = 0;
         for (int j = 0; j < *new_size; j++)
         {
-            if (cp_array[i] == cp[j])
+            if (cp_array[i] == new_array[j])
             {
                 was = 1;
                 break;
@@ -39,14 +38,8 @@ void cp_no_dublicates(int **new_array, const int *const cp_array, int *new_size,
         }
 
         if (!was)
-            cp[(*new_size)++] = cp_array[i];
+            new_array[(*new_size)++] = cp_array[i];
     }
-
-    *new_array = malloc(*new_size * sizeof(int));
-    for (int i = 0; i < *new_size; i++)
-        (*new_array)[i] = cp[i];
-
-    free(cp);
 }
 
 void print_array(const int *const array, const int size)
