@@ -10,8 +10,8 @@ ifeq ($(mode), release)
     KEYS += -g0
 endif
 
-%.o: %.c %.h
-	$(CC) $(KEYS) -c $^
+%.o: %.c *.h
+	$(CC) $(KEYS) -c $<
 
 test.exe: my_snprintf.o assert.o test.o
 	$(CC) -o $@ $^
