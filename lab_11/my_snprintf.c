@@ -132,7 +132,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
 
     int n = SIZE;
     char *out = malloc(n);
-    int result_n = 0;
+    int len_result = 0;
 
     for (int i = 0, j = 0; i < len_format; i++)
     {
@@ -162,7 +162,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
                     free(numb_str);
                 }
 
-                if (format[i] == 'x' )
+                if (format[i] == 'x')
                 {
                     int numb = va_arg(args, int);
                     char *numb_str = int_to_16(numb);
@@ -196,7 +196,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
                     }
                 }
 
-                if (format[i] == 'o' )
+                if (format[i] == 'o')
                 {
                     int numb = va_arg(args, int);
                     char *numb_str = int_to_8(numb);
@@ -216,7 +216,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
                     free(numb_str);
                 }
 
-                if (format[i] == 'x' )
+                if (format[i] == 'x')
                 {
                     int numb = va_arg(args, int);
                     char *numb_str = int_to_16(numb);
@@ -246,14 +246,16 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
             n *= 2;
         }
 
-        result_n = j;
+        len_result = j;
     }
 
     va_end(args);
 
-    out[result_n] = '\0';
-    int len_result = len(out);
+    out[len_result] = '\0';
 
+    if (size != 0)
+        size--;
+    
     if (len_result > size)
         out[size] = '\0';
 
@@ -267,7 +269,6 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
         str[i] = out[i];
 
     free(out);
-    va_end(args);
     return len_result;
 }
 
