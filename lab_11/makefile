@@ -1,4 +1,4 @@
-KEYS := -std=c99 -Wall -Werror
+KEYS := -std=c99 -Wall -Werror -pedantic
 CC := gcc
 RM := rm
 

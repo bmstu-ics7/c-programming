@@ -3,7 +3,7 @@
 int err_cnt = 0;
 
 /*
- * Сравнивает два целых числа 
+ * Сравнивает два целых числа
  *
  * @param expected [in]
  * @param recieved [in]
@@ -25,9 +25,9 @@ int assert(const int expected, const int recieved, const char *const test_name)
     {
         err_cnt++;
 
-        printf(RED "%s failed:\n" 
+        printf(RED "%s failed:\n"
                 WHITE "expected: %d, recieved: %d\n", test_name, expected, recieved);
-        
+ 
         printf(WHITE "");
         return WRONG;
     }
@@ -35,7 +35,7 @@ int assert(const int expected, const int recieved, const char *const test_name)
 
 /*
  * Сравнивает два массива
- * 
+ *
  * @param expected [in]
  * @param recieved [in]
  * @param size [in]
@@ -63,7 +63,7 @@ int assert_array(const int *const expected, const int *const recieved, const int
     {
         err_cnt++;
 
-        printf(RED "%s failed:\n"        
+        printf(RED "%s failed:\n"
                 WHITE "expected: ", test_name);
 
         for (int i = 0; i < size; i++)
@@ -203,9 +203,9 @@ int assert_string(char const *const expected, char const *const recieved, const 
     {
         err_cnt++;
 
-        printf(RED "%s failed:\n" 
+        printf(RED "%s failed:\n"
                 WHITE "expected: %s, recieved: %s\n", test_name, expected, recieved);
-        
+
         printf(WHITE "");
         return WRONG;
     }
@@ -213,7 +213,7 @@ int assert_string(char const *const expected, char const *const recieved, const 
 
 /*
  * Выводит результат тестирования
- *  
+ *
  * @param test_name [in]
 */
 
