@@ -158,7 +158,7 @@ int assert_matrix(double **expected, double **recieved, const int n, const int m
  * и полученного результатов и WRONG иначе
 */
 
-int assert_string(char const *const expected, char const *const recieved, const char *const test_name)
+int assert_string(const char *const expected, const char *const recieved, const char *const test_name)
 {
     if (expected == NULL && expected == NULL)
     {
