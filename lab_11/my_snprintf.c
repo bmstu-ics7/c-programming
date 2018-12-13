@@ -266,12 +266,16 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
     va_end(args);
 
     out[len_result] = '\0';
+    str[len_result] = '\0';
 
     if (size != 0)
         size--;
     
     if (len_result > size)
+    {
         out[size] = '\0';
+        str[size] = '\0';
+    }
 
     if (str == NULL)
     {
