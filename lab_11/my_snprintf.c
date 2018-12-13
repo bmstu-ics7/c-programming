@@ -265,7 +265,7 @@ int my_snprintf(char *restrict str, size_t size, const char *restrict format, ..
         return len_result;
     }
 
-    for (int i = 0; i < len_result; i++)
+    for (int i = 0; out[i] != '\0'; i++)
         str[i] = out[i];
 
     free(out);
