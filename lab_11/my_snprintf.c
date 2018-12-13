@@ -45,6 +45,13 @@ char *int_to_8(int num)
     int size = 20;
     int i = 0;
 
+    if (num == 0)
+    {
+        str[0] = '0';
+        str[1] = '\0';
+        return str;
+    }
+
     while (num)
     {
         str[i++] = (char)(num % 8 + 48);
@@ -74,6 +81,13 @@ char *int_to_16(int num)
     char *str = malloc(20 + 1);
     int size = 20;
     int i = 0;
+
+    if (num == 0)
+    {
+        str[0] = '0';
+        str[1] = '\0';
+        return str;
+    }
 
     while (num)
     {
