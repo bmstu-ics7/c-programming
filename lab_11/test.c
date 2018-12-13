@@ -73,8 +73,6 @@ void test4(void)
 
 int test_snprintf(void)
 {
-    int code_error = 0;
-
     test1();
     test2();
     test3();
