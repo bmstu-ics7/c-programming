@@ -10,7 +10,7 @@ ifeq ($(mode), release)
     KEYS += -g0
 endif
 
-%.o: %.c %.h
+%.o: %.c *.h
 	$(CC) $(KEYS) -c $^
 
 app.exe: work_wlist.o main.o
@@ -19,6 +19,9 @@ app.exe: work_wlist.o main.o
 run: app.exe
 	./app.exe
 	python3 graph.py
+
+ftest: work_wlist.o test.o
+	$(CC) -o ftest.exe $^
 
 clean:
 	$(RM) *.o *.exe *.gch *.out
