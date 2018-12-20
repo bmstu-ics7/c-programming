@@ -34,7 +34,7 @@ summer_temp *summer_stat(statistic *list)
     double average = 0;
     int count = 0;
 
-    list_for_each(iterator, &list->list)
+    list_for_each_prev(iterator, &list->list)
     {
         temp = list_entry(iterator, statistic, list);
         if (temp->month == 6 && last_year != temp->year)
@@ -71,7 +71,7 @@ void print_list_stat(statistic *list, FILE *stream)
     statistic *temp = NULL;
     list_head *iterator = NULL;
 
-    list_for_each(iterator, &list->list)
+    list_for_each_prev(iterator, &list->list)
     {
         temp = list_entry(iterator, statistic, list);
         fprintf(stream, "%d %d %d %d %d\n", temp->year, temp->month, temp->day, temp->max_temp, temp->min_temp);
@@ -83,7 +83,7 @@ void print_list_summer(summer_temp *list, FILE *stream)
     summer_temp *temp = NULL;
     list_head *iterator = NULL;
 
-    list_for_each(iterator, &list->list)
+    list_for_each_prev(iterator, &list->list)
     {
         temp = list_entry(iterator, summer_temp, list);
         fprintf(stream, "%d %f\n", temp->year, temp->temp);

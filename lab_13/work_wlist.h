@@ -31,7 +31,7 @@ struct summer_temp
 
 statistic *input_list(FILE *file);
 summer_temp *summer_stat(statistic *list);
-void print_list(statistic *list, FILE *stream);
+void print_list_stat(statistic *list, FILE *stream);
 void print_list_summer(summer_temp *list, FILE *stream);
 void free_list_stat(statistic *list);
 void free_list_summer(summer_temp *list);
