@@ -1,8 +1,15 @@
 #include "work_wlist.h"
 
+/*
+ * Считывает из файла данные и записывает в список statistic
+ *
+ * @param file [in]
+ *
+ * @return считанный список
+ */
+
 statistic *input_list(FILE *file)
 {
-
     statistic *data = malloc(sizeof(statistic));
     INIT_LIST_HEAD(&data->list);
 
@@ -20,6 +27,14 @@ statistic *input_list(FILE *file)
 
     return data;
 }
+
+/*
+ * Считает среднюю температуру летом у каждого кода
+ *
+ * @param list [in]
+ *
+ * @return список собранной статистики
+ */
 
 summer_temp *summer_stat(statistic *list)
 {
@@ -66,6 +81,13 @@ summer_temp *summer_stat(statistic *list)
     return data;
 }
 
+/*
+ * Выводит список статистики
+ *
+ * @param list [in]
+ * @param stream [in]
+ */
+
 void print_list_stat(statistic *list, FILE *stream)
 {
     statistic *temp = NULL;
@@ -77,6 +99,13 @@ void print_list_stat(statistic *list, FILE *stream)
         fprintf(stream, "%d %d %d %d %d\n", temp->year, temp->month, temp->day, temp->max_temp, temp->min_temp);
     }
 }
+
+/*
+ * Выводит список средней температуры летом за год
+ *
+ * @param list [in]
+ * @param stream [in]
+ */
 
 void print_list_summer(summer_temp *list, FILE *stream)
 {
@@ -90,6 +119,12 @@ void print_list_summer(summer_temp *list, FILE *stream)
     }
 }
 
+/*
+ * Очищает лист статистики
+ *
+ * @param list [in]
+ */
+
 void free_list_stat(statistic *list)
 {
     statistic *temp = NULL;
@@ -102,6 +137,12 @@ void free_list_stat(statistic *list)
         free (temp);
     }
 }
+
+/*
+ * Очищает лист летней температуры
+ *
+ * @param list [in]
+ */
 
 void free_list_summer(summer_temp *list)
 {
