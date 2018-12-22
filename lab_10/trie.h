@@ -10,6 +10,7 @@
 #define WHITE   "\x1b[0m"
 
 #define SIZE 128
+#define BIG_SIZE 1000
 
 typedef struct my_trie my_trie;
 

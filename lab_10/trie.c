@@ -229,6 +229,7 @@ void trie_search_keys_recursive(my_trie *trie, char *str, int index, char now[SI
 }
 
 void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE]);
+void trie_print_recursive_compress(my_trie *trie, int level, int end, int probels[SIZE], char out[BIG_SIZE][BIG_SIZE], int *io, int jo);
 
 /*
  * Выводит дерево ключей в консоль
@@ -238,8 +239,38 @@ void trie_print_recursive(my_trie *trie, int level, int end, int probels[SIZE]);
 
 void trie_print(my_trie *trie)
 {
+    //int probels[SIZE];
+    //trie_print_recursive(trie, 0, 0, probels);
+
     int probels[SIZE];
-    trie_print_recursive(trie, 0, 0, probels);
+    char out[BIG_SIZE][BIG_SIZE] = {{'\0'}};
+    int io = 0;
+    trie_print_recursive_compress(trie, 0, 0, probels, out, &io, 0);
+
+    for (int i = 0; out[i][0] != '\0'; i++)
+    {
+        if (out[i][0] == '+' || out[i][0] == '-')
+        {
+        }
+    }
+
+    for (int i = 0; out[i][0] != '\0'; i++)
+    {
+        for (int j = 0; out[i][j] != '\0'; j++)
+        {
+            if (out[i][j] == '-')
+                printf("└");
+            else if (out[i][j] == '|')
+                printf("│");
+            else if (out[i][j] == '+')
+                printf("├");
+            else if (out[i][j] == '>')
+                printf("▶");
+            else
+                printf("%c", out[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 /*
@@ -317,3 +348,61 @@ void trie_free(my_trie *trie, void (*free_data)(void*))
     free(trie);
 }
 
+void trie_print_recursive_compress(my_trie *trie, int level, int end, int probels[SIZE], char out[BIG_SIZE][BIG_SIZE], int *io, int jo)
+{
+    if (trie == NULL)
+        return;
+
+    for (int i = 0; i < level - 1; i++)
+    {
+        if (probels[i])
+        {
+            out[*io][jo++] = ' ';
+            out[*io][jo++] = ' ';
+        }
+        else
+        {
+            out[*io][jo++] = '|';
+            out[*io][jo++] = ' ';
+        }
+    }
+
+    if (trie->key == '\0')
+    {
+        out[*io][jo++] = 'h';
+        out[*io][jo++] = 'e';
+        out[*io][jo++] = 'a';
+        out[*io][jo++] = 'd';
+    }
+    else
+    {
+        if (end)
+        {
+            out[*io][jo++] = '-';
+            out[*io][jo++] = '>';
+        }
+        else
+        {
+            out[*io][jo++] = '+';
+            out[*io][jo++] = '>';
+        }
+
+        out[*io][jo++] = trie->key;
+    }
+
+    for (node_t *temp = trie->leavs; temp != NULL; temp = temp->next)
+    {
+        if (temp->next != NULL)
+        {
+            probels[level] = 0;
+            (*io)++;
+            trie_print_recursive_compress((my_trie*)temp->data, level + 1, FALSE, probels, out, io, 0);
+        }
+        else
+        {
+            probels[level] = 1;
+            (*io)++;
+            trie_print_recursive_compress((my_trie*)temp->data, level + 1, TRUE, probels, out, io, 0);
+        }
+    }
+}
