@@ -17,7 +17,7 @@ build: weather.o main.o
 	$(CC) -o app.exe $^
 
 run: app.exe
-	./app.exe
+	./app.exe -i EKB.csv
 
 clean:
 	$(RM) *.o *.exe *.gch *.out
