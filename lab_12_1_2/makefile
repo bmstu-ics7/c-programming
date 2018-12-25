@@ -24,7 +24,11 @@ lib%.a: %.o
 static_test.exe: assert.o liblab_07.a test.o
 	$(CC) -o $@ $^
 
-dynamic_test.exe: assert.o lab_07.dll test.o
+dynamic_link_test.exe: assert.o lab_07.dll test.o
+	$(CC) -o $@ $^
+
+dynamic_load_test.exe: assert.o load_test.o
+	make lab_07.dll
 	$(CC) -o $@ $^
 
 clean:
