@@ -1,5 +1,13 @@
 #include "my_snprintf.h"
 
+/*
+ * Находит длину строки
+ *
+ * @param str [in]
+ *
+ * @return Длина строки
+ */
+
 int len(char *str)
 {
     int n = 0;
@@ -7,37 +15,13 @@ int len(char *str)
     return n;
 }
 
-char *int_to_str(int n)
-{
-    int num = n;
-    int size = 0;
-
-    while (num)
-    {
-        num /= 10;
-        size++;
-    }
-
-    char *str;
-    if (n >= 0)
-        str = malloc(size + 1);
-    else
-    {
-        str = malloc(++size + 1);
-        str[0] = '-';
-        n *= -1;
-    }
-
-    for (int i = size - 1; n; i--)
-    {
-        str[i] = (char)(n % 10 + 48);
-        n /= 10;
-    }
-
-    str[size] = '\0';
-
-    return str;
-}
+/*
+ * Переводит число в строку с числом в 8-ричной СС
+ *
+ * @param num [in]
+ *
+ * @return Строка с новым представлением числа
+ */
 
 char *int_to_8(int num)
 {
@@ -75,6 +59,14 @@ char *int_to_8(int num)
 
     return str;
 }
+
+/*
+ * Переводит число в строку с числом в 16-ричной СС
+ *
+ * @param num [in]
+ *
+ * @return Строка с новым представлением числа
+ */
 
 char *int_to_16(int num)
 {
@@ -136,6 +128,16 @@ char *int_to_16(int num)
 
     return str;
 }
+
+/*
+ * Записывает строку str в соответствии с format
+ * 
+ * @param str [out]
+ * @param size [in]
+ * @param format [in]
+ *
+ * @return Число байт, которое дожно записаться в str
+ */
 
 int my_snprintf(char *restrict str, size_t size, const char *restrict format, ...)
 {

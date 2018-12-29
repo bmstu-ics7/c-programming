@@ -13,3 +13,4 @@
 int my_snprintf(char *restrict str, size_t size, const char *restrict format, ...);
 
 #endif
+
