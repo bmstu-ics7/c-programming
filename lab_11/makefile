@@ -19,3 +19,4 @@ test.exe: my_snprintf.o assert.o test.o
 clean:
 	$(RM) *.o *.exe *.gch
 
+
