@@ -1,4 +1,5 @@
 image: testing
+
 rk4:
   image: gcc
   stage: build
@@ -9,3 +10,4 @@ rk4:
     - cd `ls -dtr RK_32 | head -1` || cd `ls -dtr rk_32 | head -1`
     - make build || make
     - make run
+

@@ -5,3 +5,5 @@
 *.out
 *.txt
 Dockerfile
+*.a
+*.dll
