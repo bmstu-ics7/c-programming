@@ -62,7 +62,7 @@ void test4(void)
     int b = 1123;
     int c = 33;
 
-    assert(snprintf(str, 100, "asd %c %o %o %x %x", a, b, c, b, c), my_snprintf(my_str, 100, "asd %c %o %o %x %x", a, b, c, b, c), "test4 return value");
+    assert(snprintf(str, 100, "ad %c %o %o %x %x", a, b, c, b, c), my_snprintf(my_str, 100, "ad %c %o %o %x %x", a, b, c, b, c), "test4 return value");
 
     assert_string(str, my_str, "test4 string");
 
