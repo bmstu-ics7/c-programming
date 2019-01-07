@@ -1,4 +1,5 @@
 #include "trie.h"
+#include <unistd.h>
 
 /*
  * Создает префоксное дерево
@@ -239,18 +240,139 @@ void trie_print_recursive_compress(my_trie *trie, int level, int end, int probel
 
 void trie_print(my_trie *trie)
 {
-    //int probels[SIZE];
-    //trie_print_recursive(trie, 0, 0, probels);
-
     int probels[SIZE];
-    char out[BIG_SIZE][BIG_SIZE] = {{'\0'}};
+    trie_print_recursive(trie, 0, 0, probels);
+}
+
+/*
+ * Выводит дерево ключей в консоль сжатым по вертикале образом
+ *
+ * @param trie[in]
+ */
+
+void trie_print_compress(my_trie *trie)
+{
+    int probels[SIZE];
+    char out[BIG_SIZE][BIG_SIZE] = { { '\0' } };
     int io = 0;
     trie_print_recursive_compress(trie, 0, 0, probels, out, &io, 0);
 
-    for (int i = 0; out[i][0] != '\0'; i++)
+    int move[BIG_SIZE][BIG_SIZE] = { { 0 } };
+
+    int was = TRUE;
+    while (was)
     {
-        if (out[i][0] == '+' || out[i][0] == '-')
+        for (int i = 0; i < BIG_SIZE; i++)
+            for (int j = 0; j < BIG_SIZE; j++)
+                move[i][j] = 0;
+
+        was = FALSE;
+
+        for (int i = 1; out[i][0] != '\0'; i++)
         {
+            for (int j = 0; out[i][j] != '\0'; j++)
+            {
+                if (out[i][j] == ' ')
+                    continue;
+
+                if (out[i - 1][j] == ' ' || out [i - 1][j] == '\0' || (out[i - 1][j] == '|' && (out[i - 1][j + 2] == ' ' || out[i - 1][j + 2] == '\0')))
+                {
+                    if (j > 0)
+                    {
+                        if (move[i][j - 1] != 0 || out[i][j - 1] == ' ')
+                        {
+                            move[i][j] = 1;
+                        }
+                    }
+                    else
+                    {
+                        move[i][j] = 1;
+                    }
+                }
+
+                if (move[i][j] == 1)
+                {
+                    move[i + 1][j] = 1;
+                }
+            }
+        }
+
+        for (int i = BIG_SIZE - 2; i >= 0; i--)
+            for (int j = BIG_SIZE - 2; j >= 0; j--)
+                if (move[i][j])
+                {
+                    if (move[i + 1][j] == 0 && out[i + 1][j] != ' ' && out[i + 1][j] != '\0')
+                    {
+                        move[i][j] = 0;
+                    }
+
+                    if (move[i][j + 1] == 0 && out[i][j + 1] != ' ' && out[i][j + 1] != '\0')
+                    {
+                        move[i][j] = 0;
+                    }
+                }
+
+        int flag = FALSE;
+        for (int i = 0; out[i][0] != '\0'; i++)
+        {
+            for (int j = 0; out[i][j] != '\0'; j++)
+                if (out[i][j] != ' ' && out[i][j] != '\0' && move[i][j])
+                {
+                    flag = TRUE;
+                    break;
+                }
+
+            if (flag)
+                break;
+        }
+
+        if (!flag)
+        {
+            break;
+        }
+
+        for (int i = 0; out[i][0] != '\0'; i++)
+            for (int j = 0; out[i][j] != '\0'; j++)
+            {
+                out[ i - move[i][j] ][j] = out[i][j];
+
+                if (move[i][j])
+                    was = TRUE;
+            }
+
+        for (int i = 0; out[i][0] != '\0'; i++)
+            for (int j = 0; out[i][j] != '\0'; j++)
+            {
+                if (out[i][j] == '-' && out[i + 1][j] == '-')
+                {
+                    out[i + 1][j + 0] = ' ';
+                    out[i + 1][j + 1] = ' ';
+                    out[i + 1][j + 2] = ' ';
+                }
+
+                if (out[i][j] == '>' && out[i + 1][j] == '>' && out[i][j + 1] == out[i + 1][j + 1])
+                {
+                    out[i + 1][j + 0] = ' ';
+                    out[i + 1][j + 1] = ' ';
+                }
+            }
+
+        for (int i = 0; out[i][0] != '\0'; i++)
+        {
+            int j = 0;
+            int count = 0;
+
+            for (; out[i][j] != '\0'; j++)
+            {
+                if (out[i][j] == ' ')
+                    count++;
+            }
+
+            if (count == j)
+            {
+                out[i][0] = '\0';
+                break;
+            }
         }
     }
 
@@ -347,6 +469,18 @@ void trie_free(my_trie *trie, void (*free_data)(void*))
     free_data(trie->data);
     free(trie);
 }
+
+/*
+ * Рекурсивный алгоритм вывода в массив строк
+ *
+ * @param trie [in]
+ * @param level [in]
+ * @param end [in]
+ * @param probels [in]
+ * @param out [out]
+ * @param io [in]
+ * @param jo [in]
+ */
 
 void trie_print_recursive_compress(my_trie *trie, int level, int end, int probels[SIZE], char out[BIG_SIZE][BIG_SIZE], int *io, int jo)
 {

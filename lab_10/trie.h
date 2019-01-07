@@ -34,6 +34,8 @@ void trie_search_keys(FILE *stream, my_trie *trie, char *str);
 
 void trie_print(my_trie *trie);
 
+void trie_print_compress(my_trie *trie);
+
 void trie_free(my_trie *trie, void (*free_data)(void*));
 
 #endif

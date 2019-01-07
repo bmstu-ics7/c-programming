@@ -44,6 +44,9 @@ int main(void)
     printf("\n");
     trie_print(trie);
 
+    printf("\n");
+    trie_print_compress(trie);
+
     trie_free(trie, free_data);
     return SUCCESS;
 }
