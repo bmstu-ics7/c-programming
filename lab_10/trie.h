@@ -10,6 +10,7 @@
 #define WHITE   "\x1b[0m"
 
 #define SIZE 128
+#define BIG_SIZE 1000
 
 typedef struct my_trie my_trie;
 
@@ -32,6 +33,8 @@ void trie_remove(my_trie *trie, char *str_key);
 void trie_search_keys(FILE *stream, my_trie *trie, char *str);
 
 void trie_print(my_trie *trie);
+
+void trie_print_compress(my_trie *trie);
 
 void trie_free(my_trie *trie, void (*free_data)(void*));
 
