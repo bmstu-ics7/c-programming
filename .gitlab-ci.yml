@@ -1,9 +1,13 @@
 image: testing
-test:
-  tags:
-    - testing-docker
+
+rk4:
+  image: gcc
+  stage: build
+  only:
+    - RK_32
+    - rk_32
   script:
-    - testing
-  artifacts:
-    paths: [report.txt.enc]
-    when: always
+    - cd `ls -dtr RK_32 | head -1` || cd `ls -dtr rk_32 | head -1`
+    - make build || make
+    - make run
+
